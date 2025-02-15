@@ -4,7 +4,22 @@
     // Initiate the wowjs
     new WOW().init();
     
-    
+document.addEventListener("DOMContentLoaded", function () {
+    function openImage(src) {
+        const overlay = document.getElementById('overlay');
+        const largeImage = document.getElementById('largeImage');
+        largeImage.src = src;
+        overlay.style.display = 'flex';
+    }
+
+    function closeImage() {
+        document.getElementById('overlay').style.display = 'none';
+    }
+
+    window.openImage = openImage;
+    window.closeImage = closeImage;
+});
+
     // Back to top button
     $(window).scroll(function () {
         if ($(this).scrollTop() > 200) {
@@ -140,32 +155,24 @@
     });
     
 })(jQuery);
-document.addEventListener("DOMContentLoaded", function () {
-    const sections = document.querySelectorAll("section"); // الأقسام المستهدفة
-    const navLinks = document.querySelectorAll(".nav-link");
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // إزالة "active" من جميع الروابط
-                navLinks.forEach(link => link.classList.remove("active"));
 
-                // الحصول على الـ id للقسم الذي في الأسطر
-                const id = entry.target.getAttribute("id");
-                
-                // إضافة "active" للرابط المطابق
-                const activeLink = document.querySelector(`.nav-link[href="#${id}"]`);
-                if (activeLink) {
-                    activeLink.classList.add("active");
-                }
-            }
+document.addEventListener("DOMContentLoaded", function() {
+    const navLinks = document.querySelectorAll(".nav-item.nav-link");
+
+    navLinks.forEach(link => {
+        link.addEventListener("click", function() {
+            // تأخير تنفيذ الكود لمدة ثانية واحدة (1000 ميلي ثانية)
+            setTimeout(function() {
+                // إزالة الكلاس "active" من جميع الروابط
+                navLinks.forEach(link => {
+                    link.classList.remove("active");
+                });
+
+                // إضافة الكلاس "active" فقط للرابط الذي تم النقر عليه
+                link.classList.add("active");
+            }, 200); // 1000 ميللي ثانية = 1 ثانية
         });
-    }, {
-        threshold: 0.1, // التغيير بمجرد ظهور القسم بنسبة 10%
-        rootMargin: "0px 0px -20% 0px" // تمديد منطقة المراقبة بحيث يظهر القسم أسرع
     });
-
-    // مراقبة جميع الأقسام
-    sections.forEach(section => observer.observe(section));
 });
 
