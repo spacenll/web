@@ -21,7 +21,6 @@ html {
         padding-bottom: 56.25%; /* نسبة العرض إلى الارتفاع 16:9 */
         overflow: hidden;
     }
-.partners{        overflow: hidden;}
 
     .map-container iframe {
         position: absolute;
@@ -1102,8 +1101,11 @@ text-align: right;
     position: relative;
     width: 100%;
     padding: 45px 0;
+    overflow: hidden;
 }
-
+.partners{
+    overflow: hidden;
+}
 .faqs .row {
     position: relative;
 }
