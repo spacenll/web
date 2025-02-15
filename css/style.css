@@ -21,6 +21,7 @@ html {
         padding-bottom: 56.25%; /* نسبة العرض إلى الارتفاع 16:9 */
         overflow: hidden;
     }
+.partners{        overflow: hidden;}
 
     .map-container iframe {
         position: absolute;
