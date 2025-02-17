@@ -313,27 +313,7 @@ direction: rtl;
     border-left: 10px solid #ff5300;  
 
 }
- .navanimation {
-    
-            animation: navanimation ease-out 1.2s;
-
-        }
-
-        @keyframes navanimation {
-            from {
-              
-                
-                padding: 0 0px;
-              border-right:0px;
-                border-left:0px;
-            }
-            to {
-                
-                padding: 0 75px;
-           border-right:10px solid #ff5300;
-                border-left:10px solid #ff5300;
-            }
-        }
+ 
 
 .nav-bar .container-fluid {
     padding: 0;
