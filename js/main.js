@@ -76,24 +76,34 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     
     
-    // Modal Video
-    $(document).ready(function () {
-        var videoModal = $('#videoModal');
-        var videoPlayer = $('#videoPlayer');
-        var videoSource = $('#videoSource');
+$(document).ready(function () {
+    var videoModal = $('#videoModal');
+    var videoPlayer = $('#videoPlayer');
+    var videoSource = $('#videoSource');
 
-        videoModal.on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget);
-            var videoSrc = button.data("src");
-            videoSource.attr("src", videoSrc);
-            videoPlayer[0].load(); // إعادة تحميل الفيديو
-            videoPlayer[0].play(); // تشغيل الفيديو تلقائيًا
-        });
+    videoModal.on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var videoSrc = button.data("src");
 
-        videoModal.on('hidden.bs.modal', function () {
-            videoPlayer[0].pause(); // إيقاف الفيديو عند إغلاق النافذة
+        // إعادة تعيين المصدر بطريقة متوافقة مع iOS
+        videoPlayer[0].pause(); // إيقاف أي تشغيل سابق
+        videoSource.attr("src", videoSrc);
+        videoPlayer[0].load(); // تحميل الفيديو
+
+        // التأكد من دعم التشغيل التلقائي عبر كتم الصوت (خاص بـ iPhone)
+        videoPlayer[0].muted = true;
+        videoPlayer[0].play().catch(function () {
+            console.log("يجب على المستخدم الضغط للتشغيل في iOS.");
         });
     });
+
+    // عند إغلاق المودال، يتم إيقاف الفيديو وإزالة المصدر
+    videoModal.on('hidden.bs.modal', function () {
+        videoPlayer[0].pause();
+        videoSource.attr("src", ""); // تفريغ المصدر لمنع التشغيل بالخلفية
+    });
+});
+
 
     // Testimonial Slider
     $('.testimonial-slider').slick({
