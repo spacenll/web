@@ -32,11 +32,11 @@
     </head>
 
     <body data-bs-spy="scroll" data-bs-target=".navbar-nav">
-        <section id="home"></section>
-        <div class="wrapper">
+       
+        <div class="wrapper" id="home">
             <!-- Top Bar Start -->
             <div class="top-bar">
-                <div class="container-fluid">
+                <div class="container-fluid  wow fadeIn" data-wow-delay="0.1s">
                     <div class="row align-items-center">
                         <div class="col-lg-4 col-md-12">
                             <div class="logo">
@@ -93,7 +93,7 @@
             <!-- Top Bar End -->
 
             <!-- Nav Bar Start -->
-            <div class="nav-bar">
+            <div class="nav-bar navanimation">
                 <div class="container-fluid">
                     <nav class="navbar navbar-expand-lg bg-1 navbar-dark">
                         <a href="#" class="navbar-brand"></a>
@@ -101,8 +101,8 @@
                             <span class="navbar-toggler-icon"></span>
                         </button>
 
-                        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                            <div class="navbar-nav mr-auto">
+                        <div class="collapse navbar-collapse justify-content-between  wow fadeInDown" data-wow-delay="0.4s" id="navbarCollapse">
+                            <div class="navbar-nav mr-auto ">
                                 <a href="#home" class="nav-item nav-link active">الصفحة الرئيسية</a>
                                 <a href="#about" class="nav-item nav-link">من نحن</a>
                                 <a href="#services" class="nav-item nav-link">خدماتنا</a>
@@ -131,8 +131,8 @@
         
                         <div class="carousel-caption">
                             
-                                                     <h1 class="animated fadeInRight">نحو مستقبل هندسي متطور – الجودة والدقة في كل مشروع!</h1>
-                            <a class="btn animated fadeInUp" href="#about">انقر للمزيد</a>
+                                                     <h1 class="animated fadeInUp">نحو مستقبل هندسي متطور <br>الجودة والدقة في كل مشروع!</h1>
+                            <a class="btn animated fadeInUp" href="#about">إقرأ المزيد</a>
                         </div>
                     </div>
 
@@ -361,10 +361,12 @@
 
             <!-- Video Start -->
             <div class="video wow fadeIn" data-wow-delay="0.1s">
+                
                 <div class="container">
-                    <button type="button" class="btn-play" data-toggle="modal" data-src="vid/who_we_are.mp4" data-target="#videoModal">
+                    <button type="button" class="btn-play wow fadeIn" data-wow-delay="0.3s" data-toggle="modal" data-src="vid/who_we_are.mp4" data-target="#videoModal">
     <span></span>
 </button>
+                  <h1 class="wow fadeInUp" data-wow-delay="0.4s">فيديو تعريفي</h1>  
                 </div>
             </div>
             
@@ -396,7 +398,7 @@
           
                 <div class="container">
                     <div class="section-header text-center wow fadeInUp">
-                        <p>مشاريعنا</p>
+                        <p>أعمالنا</p>
                         <h2>شاهد اخر اعمالنا</h2>
                       <section class="project-area  section-padding30 wow fadeInUp">
             <div class="container1">
@@ -684,19 +686,29 @@
             <!-- Team End -->
             
               <!-- Partners Start -->
-            <div class="partners wow fadeInRight" id="partners">
+            <section  id="partners">
+            <div class="partners wow fadeInRight" >
                 <div class="container">
-                    <div class="section-header text-right">
+                    <div class="section-heade text-right">
                         <p>شركائنا</p>
                         <h2>شركائنا</h2>
-                        <a>ATASSI GROUP – متخصصة بالأعمال الهندسية والديكور.<br>
-azen – استشارات هندسية متقدمة.<br>
-شركة العقود – تنفيذ وإدارة العقود والمشاريع.
-</a>
+                            <div class="containertable">
+        <!-- First Row - Images -->
+        <div class="image-box"><img src="img/aizen.png" alt="Image 1"></div>
+        <div class="image-box"><img src="img/ATASSI%20GROUP.png" alt="Image 2"></div>
+        <div class="image-box"><img src="img/aizen.png" alt="Image 3"></div>
+
+        <!-- Second Row - Text -->
+        <div class="text-box">azen <br> استشارات هندسية متقدمة</div>
+        <div class="text-box">ATASSI GROUP<br>متخصصة بالأعمال الهندسية والديكور</div>
+        <div class="text-box">شركة العقود<br> تنفيذ وإدارة العقود والمشاريع</div>
+    </div>
+ 
                     </div>
                  
                 </div>
             </div>
+            </section>
             <!-- Partners End -->
             
 
@@ -851,11 +863,10 @@ azen – استشارات هندسية متقدمة.<br>
 
             <!-- Footer Start -->
             <div class="footer wow fadeIn" data-wow-delay="0.3s">
-                <div class="companylog"></div>
-                <div class="borderline"></div>
-                <div class="container">
+                <div class="companylog wow fadeInUp" data-wow-delay="0.7s"></div>
+                  <div class="container">
                     <div class="row">
-                        <div class="col-md-6 col-lg-4">
+                        <div class="col-md-6 col-lg-4 wow fadeInRight" data-wow-delay="0.6s">
                             <div class="footer-contact">
                                 <h2>التواصل</h2>
                                 
@@ -868,7 +879,7 @@ azen – استشارات هندسية متقدمة.<br>
                                 
                             </div>
                         </div>
-                        <div class="col-md-6 col-lg-5">
+                        <div class="col-md-6 col-lg-5 wow fadeInUp" data-wow-delay="0.4s">
                             <div class="footer-link">
                                 <h2>الخدمات</h2>
                                 <a >المقاولات (العامة والخاصة)</a>
@@ -885,7 +896,7 @@ azen – استشارات هندسية متقدمة.<br>
                             </div>
                         </div>
                    
-                        <div class="col-md-6 col-lg-3">
+                        <div class="col-md-6 col-lg-3 wow fadeInLeft" data-wow-delay="0.5s">
                             <div class="newsletter">
                                 <h2>الموقع</h2>
                                 <p><i class="fa fa-map-marker-alt"></i> صلالة - مبنى نزوى - الطابق الثالث </p>
@@ -904,18 +915,17 @@ azen – استشارات هندسية متقدمة.<br>
                     </div>
                 </div>
                
-                <section class="container copyright" id="contact">
+                <section class="container copyright wow fadeIn" data-wow-delay="0.8s" id="contact">
                     <div class="row">
                         <div class="col-md-4">
                             <p>&copy;  كافة الحقوق محفوظة 2025 <a href="/">اعمار الخليج الشاملة</a></p>
                         </div>
                          <div class="col-md-4">
                         <div class="footer-social">
-                                    <a href=""><i class="fab fa-twitter"></i></a>
-                                    <a href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a href=""><i class="fab fa-youtube"></i></a>
-                                    <a href=""><i class="fab fa-instagram"></i></a>
-                                    <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="http://wa.me/96877572458"><i class="fab fa-whatsapp"></i></a>
+                                    <a href="https://www.facebook.com/emaargulfc"><i class="fab fa-facebook-f"></i></a>
+                                    
+                                    <a href="https://www.instagram.com/emaargulfc"><i class="fab fa-instagram"></i></a>
                                 </div>
                         </div>
                         <div class="col-md-4">
