@@ -36,7 +36,7 @@ section{
         .image-box img {
             width: 100%;
     height: 60px; 
-                opacity: 0.4;
+                opacity: 0.8;
     object-fit: contain;
         }
 .image-box img:hover{
@@ -44,7 +44,7 @@ section{
 }
         .text-box {
             padding: 10px;
-            color:#666666;
+            color:#c3c3c3;
         }
 
 ::-webkit-scrollbar{
