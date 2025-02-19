@@ -54,68 +54,6 @@
 
 <link href="lib/slick/slick-theme.css" rel="stylesheet">
 
-<script type="text/javascript">
-
-function googleTranslateElementInit() {
-
-new google.translate.TranslateElement(
-
-{ pageLanguage: 'ar', includedLanguages: 'en,ar', layout: google.translate.TranslateElement.InlineLayout.SIMPLE },
-
-'google_translate_element'
-
-);
-
-}
-
-
-
-function translateToLanguage(lang) {
-
-setTimeout(function () {
-
-var select = document.querySelector(".goog-te-combo");
-
-if (select) {
-
-select.value = lang; // Change language to English or Arabic
-
-select.dispatchEvent(new Event("change"));
-
-}
-
-}, 500); // Delay to ensure Google Translate loads
-
-}
-
-
-
-// Translate to English when clicking the "EN" button
-
-function translateToEnglish() {
-
-translateToLanguage("yes");
-
-}
-
-
-
-// Translate to Arabic when clicking the "AR" button
-
-function translateToArabic() {
-
-translateToLanguage("ar");
-
-}
-
-</script>
-
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-
-
-
-
 <!-- Template Stylesheet -->
 
 <link href="css/style.css" rel="stylesheet">
@@ -169,16 +107,6 @@ translateToLanguage("ar");
 </div>
 
 <div class="top-bar-text">
-
-<button id="translate-en" onclick="translateToEnglish()">EN</button>
-
-<button id="translate-ar" onclick="translateToArabic()">AR</button>
-
-
-
-<!-- Hide Google Translate -->
-
-<div id="google_translate_element" style="display: none;"></div>
 
 
 
@@ -282,7 +210,7 @@ translateToLanguage("ar");
 
 <a href="#home" class="nav-item nav-link active">Home</a>
 
-<a href="#about" class="nav-item nav-link">من نحن</a>
+<a href="#about" class="nav-item nav-link">About Us</a>
 
 <a href="#services" class="nav-item nav-link">Our Services</a>
 
@@ -898,13 +826,13 @@ Your browser does not support video playback.
 
 <div class="nav1 nav-tabs" id="nav-tab" role="tablist">
 
-<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"> الكل </a>
+<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"> All </a>
 
-<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false"> الديكور الداخلي</a>
+<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Interior decoration</a>
 
-<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">المباني</a>
+<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Buildings</a>
 
-<a class="nav-item nav-link" id="nav-last-tab" data-toggle="tab" href="#nav-last" role="tab" aria-controls="nav-last" aria-selected="false">الاثاث</a>
+<a class="nav-item nav-link" id="nav-last-tab" data-toggle="tab" href="#nav-last" role="tab" aria-controls="nav-last" aria-selected="false">Furniture</a>
 
 </div>
 
