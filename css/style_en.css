@@ -2285,7 +2285,7 @@ background-image: url(../img/carousel-2.jpg);
     content: "";
     width: 60px;
     height: 2px;
-    right: 0;
+    left: 0;
     bottom: 0;
     background: #f16724;
 }
