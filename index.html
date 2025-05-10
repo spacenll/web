@@ -13,7 +13,7 @@
 <meta property="og:url" content="https://emaar-gulf-global.com/">
 <meta property="og:title" content="اعمار الخليج الشاملة - Emaar Gulf Global | سلطنة عُمان">
 <meta property="og:description" content="إعمار الخليج الشاملة هي شركة مقاولات واستشارات هندسية في سلطنة عُمان، نقدم خدمات البناء، التصميم، التشطيبات، والتطوير العقاري بجودة عالية ومعايير عالمية.">
-<meta property="og:image" content="https://emaar-gulf-global.com/img/logo.png">
+<meta property="og:image" content="https://emaar-gulf-global.com/img/favicon.ico">
       <!-- Google Font -->
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -130,6 +130,7 @@
                         <a href="#services" class="nav-item nav-link">خدماتنا</a>
                         <a href="#projects" class="nav-item nav-link">أعمالنا</a>
                         <a href="#partners" class="nav-item nav-link">شركائنا</a> 
+                               <a href="#clients" class="nav-item nav-link">عملائنا</a> 
                         <a href="#FQA" class="nav-item nav-link">الأسئلة الشائعة</a>
                      </div>
                      <div class="ml-auto">
@@ -762,21 +763,35 @@
          <!-- Team End -->
          <!-- Partners Start -->
          <section  id="partners">
+            
             <div class="partners wow fadeInRight" >
                <div class="container">
                   <div class="section-heade text-right">
-                     <p>شركائنا</p>
-                     <h2>شركائنا</h2>
+                     <p style="cursor: pointer"
+       data-toggle="modal"
+       data-target="#videoModal"
+       data-src="vid/pathner.mp4"
+       onclick="triggerVideoModal(this)">فيديو ◄</p>
+                                      <div style="position: relative; left: 50%; ">
+  <button type="button"
+          class="video-play-btn"
+          data-toggle="modal"
+          data-src="vid/project.mp4"
+          data-target="#videoModal"
+          onclick="triggerVideoModal(this)">
+    ▶
+  </button>
+</div>
+                     <h2>شركائنا</h2>  
+  
+                     
+                     
                      <div class="containertable">
                         <!-- First Row - Images -->
                       
                         <div class="image-box"><img src="img/Emaar.png" alt="Image 1"> <div class="text-box">عقود الإنشائية</div></div>
                        
-                        <div class="image-box1"><img src="img/parthnr.png" alt="Image 2" style="cursor: pointer"
-       data-toggle="modal"
-       data-target="#videoModal"
-       data-src="vid/pathner.mp4"
-       onclick="triggerVideoModal(this)">     <div class="text-box"></div></div>
+                        <div class="image-box"><img src="img/nte.png" alt="Image 2">     <div class="text-box">مؤسسة نيفان للتجارة</div></div>
                    
                       <div class="image-box"><img src="img/ATASSI%20GROUP.png" alt="Image 3">  <div class="text-box">ATASSI GROUP<br>متخصصة بالأعمال الهندسية والديكور</div></div>
                       
@@ -785,14 +800,38 @@
                   </div>
                </div>
             </div>
+             
+
          </section>
          <!-- Partners End -->
+          <section  id="clients">
+            
+            <div class="partners wow fadeInRight" >
+               <div class="container">
+                  <div class="section-header text-right">
+                     <h2>عملائنا</h2>  
+  
+                     <div class="containertable1">
+                        <!-- First Row - Images -->
+                      
+                        <div class="image-box1"><img src="img/client1.jpg" alt="عملائنا إعمار الخليج الشاملة " onclick="openImage(this.src)"> </div>
+                       <div class="image-box1"><img src="img/client2.jpg" alt="عملائنا إعمار الخليج الشاملة " onclick="openImage(this.src)"> </div>
+                    <div class="image-box1"><img src="img/client3.jpg" alt="عملائنا إعمار الخليج الشاملة " onclick="openImage(this.src)"> </div>
+                            <div class="image-box1"><img src="img/client4.jpg" alt="عملائنا إعمار الخليج الشاملة " onclick="openImage(this.src)"> </div>
+                        
+                     </div>
+                  </div>
+               </div>
+            </div>
+             
+
+         </section>
          <!-- FAQs Start -->
          <section class="faqs" id="FQA">
             <div class="container">
                <div class="section-header text-center wow fadeInRight">
                   <p>الأسئلة الشائعة</p>
-                  <h2>قد تسأل؟</h2>
+                  <h2>سؤال وجواب</h2>
                </div>
                <div class="row">
                   <div class="col-md-6">
@@ -800,124 +839,83 @@
                         <div class="card wow fadeInLeft" data-wow-delay="0.1s">
                            <div class="card-header">
                               <a class="card-link collapsed" data-toggle="collapse" href="#collapseOne">
-                              سؤال تجريبي؟
-                              </a>
+ما هي المناطق التي تغطونها؟                              </a>
                            </div>
                            <div id="collapseOne" class="collapse" data-parent="#accordion-1">
                               <div class="card-body">
-                                 الاجابة هنا
+نخدم جميع أنحاء سلطنة عُمان، مع تركيز خاص على محافظة ظفار.
+
                               </div>
                            </div>
                         </div>
                         <div class="card wow fadeInLeft" data-wow-delay="0.2s">
                            <div class="card-header">
                               <a class="card-link collapsed" data-toggle="collapse" href="#collapseTwo">
-                              سؤال تجريبي؟
+هل تقدمون خدمات تنسيق الحدائق واللاندسكيب؟
                               </a>
                            </div>
                            <div id="collapseTwo" class="collapse" data-parent="#accordion-1">
                               <div class="card-body">
-                                 الاجابة هنا
+نعم، نوفر خدمات تنسيق الحدائق والتخطيط الخارجي (لاندسكيب) بشكل احترافي ومتكامل.
+
                               </div>
                            </div>
                         </div>
                         <div class="card wow fadeInLeft" data-wow-delay="0.3s">
                            <div class="card-header">
                               <a class="card-link collapsed" data-toggle="collapse" href="#collapseThree">
-                              سؤال تجريبي؟
+هل تشمل خدماتكم إعداد المخططات المعمارية والإنشائية؟
                               </a>
                            </div>
                            <div id="collapseThree" class="collapse" data-parent="#accordion-1">
                               <div class="card-body">
-                                 الاجابة هنا
+نعم، نقوم بإعداد ودراسة المخططات المعمارية والإنشائية، بالإضافة إلى مراجعة المخططات السابقة واقتراح التحسينات اللازمة.
+
                               </div>
                            </div>
                         </div>
-                        <div class="card wow fadeInLeft" data-wow-delay="0.4s">
-                           <div class="card-header">
-                              <a class="card-link collapsed" data-toggle="collapse" href="#collapseFour">
-                              سؤال تجريبي؟
-                              </a>
-                           </div>
-                           <div id="collapseFour" class="collapse" data-parent="#accordion-1">
-                              <div class="card-body">
-                                 الاجابة هنا
-                              </div>
-                           </div>
-                        </div>
-                        <div class="card wow fadeInLeft" data-wow-delay="0.5s">
-                           <div class="card-header">
-                              <a class="card-link collapsed" data-toggle="collapse" href="#collapseFive">
-                              سؤال تجريبي؟
-                              </a>
-                           </div>
-                           <div id="collapseFive" class="collapse" data-parent="#accordion-1">
-                              <div class="card-body">
-                                 الاجابة هنا
-                              </div>
-                           </div>
-                        </div>
+                     
                      </div>
                   </div>
                   <div class="col-md-6">
                      <div id="accordion-2">
-                        <div class="card wow fadeInRight" data-wow-delay="0.1s">
+                        
+                          <div class="card wow fadeInRight" data-wow-delay="0.4s">
                            <div class="card-header">
-                              <a class="card-link collapsed" data-toggle="collapse" href="#collapseSix">
-                              سؤال تجريبي؟
+                              <a class="card-link collapsed" data-toggle="collapse" href="#collapseFour">
+هل تقدمون خدمة إدارة المشاريع؟
                               </a>
                            </div>
-                           <div id="collapseSix" class="collapse" data-parent="#accordion-2">
+                           <div id="collapseFour" class="collapse" data-parent="#accordion-1">
                               <div class="card-body">
-                                 الاجابة هنا
-                              </div>
-                           </div>
-                        </div>
-                        <div class="card wow fadeInRight" data-wow-delay="0.2s">
-                           <div class="card-header">
-                              <a class="card-link collapsed" data-toggle="collapse" href="#collapseSeven">
-                              سؤال تجريبي؟
-                              </a>
-                           </div>
-                           <div id="collapseSeven" class="collapse" data-parent="#accordion-2">
-                              <div class="card-body">
-                                 الاجابة هنا
-                              </div>
-                           </div>
-                        </div>
-                        <div class="card wow fadeInRight" data-wow-delay="0.3s">
-                           <div class="card-header">
-                              <a class="card-link collapsed" data-toggle="collapse" href="#collapseEight">
-                              سؤال تجريبي؟
-                              </a>
-                           </div>
-                           <div id="collapseEight" class="collapse" data-parent="#accordion-2">
-                              <div class="card-body">
-                                 الاجابة هنا
-                              </div>
-                           </div>
-                        </div>
-                        <div class="card wow fadeInRight" data-wow-delay="0.4s">
-                           <div class="card-header">
-                              <a class="card-link collapsed" data-toggle="collapse" href="#collapseNine">
-                              سؤال تجريبي؟
-                              </a>
-                           </div>
-                           <div id="collapseNine" class="collapse" data-parent="#accordion-2">
-                              <div class="card-body">
-                                 الاجابة هنا
+نعم، نوفر إدارة كاملة للمشاريع بدءًا من التصميم وحتى التسليم، لضمان جودة التنفيذ ضمن الوقت والميزانية المحددة.
+
                               </div>
                            </div>
                         </div>
                         <div class="card wow fadeInRight" data-wow-delay="0.5s">
                            <div class="card-header">
-                              <a class="card-link collapsed" data-toggle="collapse" href="#collapseTen">
-                              سؤال تجريبي؟
+                              <a class="card-link collapsed" data-toggle="collapse" href="#collapseFive">
+هل تقدمون دراسة جدوى أو معاينة أولية قبل البدء بالمشروع؟
                               </a>
                            </div>
-                           <div id="collapseTen" class="collapse" data-parent="#accordion-2">
+                           <div id="collapseFive" class="collapse" data-parent="#accordion-1">
                               <div class="card-body">
-                                 الاجابة هنا
+نعم، نوفر دراسة أولية تشمل مراجعة المخططات وتحليل احتياجات المشروع.
+
+                              </div>س
+                           </div>
+                        </div>
+                         <div class="card wow fadeInRight" data-wow-delay="0.1s">
+                           <div class="card-header">
+                              <a class="card-link collapsed" data-toggle="collapse" href="#collapseSix">
+كيف يمكنني طلب عرض سعر أو استشارة؟
+                              </a>
+                           </div>
+                           <div id="collapseSix" class="collapse" data-parent="#accordion-2">
+                              <div class="card-body">
+يمكنك التواصل معنا    <a class="btn1" href="#contact">انقر هنا</a> لتحديد موعد أو من يمكنك زيارة مكتبنا .
+
                               </div>
                            </div>
                         </div>
@@ -970,7 +968,7 @@
                         <h2>الموقع</h2>
                         <p><i class="fa fa-map-marker-alt"></i> صلالة - بناية السيل - الطابق الثالث - بنك نزوى</p>
                         <div class="map-container">
-                           <iframe >
+                           <iframe
                               src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d238.44441737020614!2d54.10242158929575!3d17.018240379255815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2som!4v1739635295779!5m2!1sen!2som" 
                               allowfullscreen="" 
                               loading="lazy" 
