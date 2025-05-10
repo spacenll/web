@@ -14,37 +14,46 @@ html {
 }
 
 section{
-    padding: 150px 0 150px 0;
+    padding: 100px 0 100px 0;
 }
 #partners{
     background: #000;
     padding: 150px 0 140px 0;
 }
-.image-box1{
-             width: 50%;
 
-                opacity: 0.8;
-    object-fit: contain;
-}
-.image-box1 img{
-             width: 150%;
 
- 
-}
+       .containertable1 {
+               display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+         padding: 50px 0 0 0;
+    text-align: center;
+  
+    margin: auto;
+   place-items: center;
 
+        }
        .containertable {
                display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-         
+         padding: 50px 0 0 0;
     text-align: center;
     max-width: 900px; /* زودنا العرض */
     margin: auto;
-   
+   place-items: center;
+
+        }
+    .image-box1 img {
+           
+            width: 100%;
+  
+           border-radius: 30px;
+    object-fit: contain;
         }
 
         .image-box img {
-            padding: 25% 0 0 0;
+           
             width: 30%;
   
                 opacity: 0.8;
@@ -178,6 +187,9 @@ a:focus {
     color: #f16724;
     outline: none;
     text-decoration: none;
+}
+.btn1 {
+      color: #f16724;
 }
 
 .btn:focus {
@@ -374,6 +386,7 @@ direction: rtl;
     border: 2px solid #000;
     border-radius: 20px 20px 20px 20px;
 }
+
 
 .nav-bar .btn:hover {
     color: #000;
@@ -2336,7 +2349,7 @@ background-image: url(../img/carousel-2.jpg);
     display: inline-block;
     width: 40px;
     height: 40px;
-    padding: 7px 0;
+    padding: 10px 0;
     text-align: center;
     border: 1px solid rgba(256, 256, 256, .3);
     border-radius: 60px;
