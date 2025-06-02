@@ -20,21 +20,40 @@ section{
 }
 
 
+       .containertable1 {
+               display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+         padding: 50px 0 0 0;
+    text-align: center;
+  
+    margin: auto;
+   place-items: center;
+
+        }
        .containertable {
                display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-         
+         padding: 50px 0 0 0;
     text-align: center;
     max-width: 900px; /* زودنا العرض */
     margin: auto;
-   
+   place-items: center;
+
         }
 
         .image-box img {
             width: 100%;
     height: 60px; 
                 opacity: 0.8;
+    object-fit: contain;
+        }
+   .image-box1 img {
+           
+            width: 100%;
+  
+           border-radius: 30px;
     object-fit: contain;
         }
 .image-box img:hover{
@@ -2299,8 +2318,8 @@ background-image: url(../img/carousel-2.jpg);
 
 .footer .footer-link a::before {
     position: relative;
-    content: "\f104";
-    font-family: "Font Awesome 5 Free";
+    content: " ‎ >‎";
+  
     font-weight: 900;
     margin-left: 10px;
 }
