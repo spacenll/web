@@ -238,18 +238,10 @@
 </div>
 
 
-  <div id="modal" onclick="closeModal()" class="modal" aria-hidden="true">
-
-
-    <div class="modal-content">
-      <img id="modalImg"  alt="الصورة" draggable="false" />
-    </div>
-  
-  </div>
 
 <script>
    const totalImages = 41;
-  const gallery = document.getElementById("gallery");
+  const galler0y = document.getElementById("galler0y");
   const modal = document.getElementById("modal");
   const modalImg = document.getElementById("modalImg");
 
@@ -261,19 +253,10 @@
     img.alt = `img ${i}`;
     img.onclick = () => openModal(i);
       
-    gallery.appendChild(img);
+    galler0y.appendChild(img);
   }
 
-  function openModal(index) {
-    currentIndex = index;
-    modal.style.display = "flex";
-    modalImg.src = `${index}`;
-      
-  }
-
-  function closeModal() {
-    modal.style.display = "none";
-  }
+ 
 
 
     
