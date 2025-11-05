@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>إعادة توجيه إلى رقم الهاتف</title>
+  <script>
+    window.onload = function() {
+      // اختر أحد الرقمين
+      var numbers = ["97133321", "95454546"];
+      var selected = numbers[Math.floor(Math.random() * numbers.length)];
+      window.location.href = "tel:" + selected;
+    };
+  </script>
+</head>
+<body>
+  <p>جاري تحويلك إلى أحد الأرقام...</p>
+</body>
+</html>
