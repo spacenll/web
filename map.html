@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Real Estate GIS</title>
+    <title>الملكية للإستثمار</title>
+    <link rel="icon" type="image/png" href="/lib/kmls/img/logo.png">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <meta name="robots" content="noindex">
@@ -123,8 +124,9 @@
         <div class="panel-header">
             <div class="settings-icon-btn" onclick="toggleSectionDirect('advanced-settings-content')" title="خيارات متقدمة">≡</div>
              <div class="settings-icon-btn1" onclick="toggleSection('add-land-content')" title="اضافة">+</div>
-            <img src="logo.png" alt="الشعار" class="panel-logo" onerror="this.style.display='none'">
+            <img src="lib/kmls/img/logo.png" alt="الشعار" class="panel-logo" onerror="this.style.display='none'">
             <span>الملكية للإستثمار</span>
+    
         </div>
         
         <div id="advanced-settings-content" style="display: none; padding: 15px; background: #fafafa; border-bottom: 2px solid var(--secondary);">
@@ -316,7 +318,7 @@
         let isSortAsc = true;
 
         const customYellowPin = L.icon({
-            iconUrl: 'yellow-pin.png', 
+            iconUrl: 'lib/kmls/img/yellow-pin.png', 
             iconSize: [32, 32],      
             iconAnchor: [16, 32],    
             popupAnchor: [0, -32]    
@@ -352,7 +354,7 @@ function openInGoogleEarth(layer) {
 
         async function scanKmlFolderAndLoad() {
             try {
-                const response = await fetch('kmls/');
+                const response = await fetch('lib/kmls/');
                 if (!response.ok) throw new Error("لا يمكن قراءة المجلد مباشرة");
                 
                 const text = await response.text();
@@ -674,7 +676,7 @@ function openInGoogleEarth(layer) {
                     return; // تخطي رسم الأراضي التي لا تنتمي للمنطقة المفلترة
                 }
 
-                const generatedKmlUrl = `kmls/${p.plotNum}_${p.area}.kml`;
+                const generatedKmlUrl = `lib/kmls/${p.plotNum}_${p.area}.kml`;
 
                 const customLayer = omnivore.kml(generatedKmlUrl)
                     .on('ready', function() {
@@ -754,7 +756,7 @@ function openInGoogleEarth(layer) {
             }
 
             const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
-            const autoCrokyUrl = `kmls/img/${p.plotNum}.jpg`;
+            const autoCrokyUrl = `lib/kmls/img/${p.plotNum}.jpg`;
 
             sideBody.innerHTML = `
                 <div class="info-item"><b>المنطقة والمربع:</b> ${p.regionMain} - ${p.regionSub} | مربع (${p.square})</div>
