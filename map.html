@@ -116,6 +116,84 @@
         .nested-accordion { border: 1px solid var(--border-color); border-radius: 4px; margin-top: 10px; overflow: hidden; }
         .nested-header { background: #f9f9f9; padding: 10px; font-weight: bold; cursor: pointer; font-size: 11px; display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); }
         .nested-content { padding: 12px; display: none; background: #fff; }
+        /* === الستايل الذكي لإصلاح الموبايل والتابلت === */
+@media (max-width: 992px) {
+    /* 1. تحويل اللوحة اليمنى لطبقة عائمة فوق الخريطة بدلاً من ضغطها */
+    .admin-panel {
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        width: 310px; /* تصغير العرض ليناسب التابلت والهواتف */
+        max-width: 85vw; /* الحفاظ على مساحة أمان لرؤية الخريطة */
+        box-shadow: -5px 0 15px rgba(0,0,0,0.15);
+        transform: translateX(0);
+        transition: transform 0.3s ease;
+    }
+    
+    /* حركة إخفاء اللوحة المحدثة ديناميكياً */
+    .admin-panel.hidden {
+        transform: translateX(100%) !important;
+        width: 0 !important;
+        min-width: 0 !important;
+    }
+
+    /* 2. تعديل تموضع زر الإخفاء والظهور ليتوافق مع العرض الجديد */
+    .toggle-panel-btn {
+        right: 310px !important;
+        padding: 18px 8px; /* تكبير الزر قليلاً لسهولة الضغط بالإصبع */
+        font-size: 14px;
+    }
+    .admin-panel.hidden + .toggle-panel-btn {
+        right: 0 !important;
+    }
+
+    /* 3. تصنيع ملاءمة كاملة للشاشة الجانبية (اليسرى) على الهواتف */
+    .info-sidebar {
+        width: 310px;
+        left: -310px;
+        max-width: 85vw;
+        z-index: 99999; /* رفع الأولوية فوق كل شيء */
+    }
+    .info-sidebar.open {
+        left: 0;
+    }
+
+    /* 4. تحسينات مريحة للمس بالإصبع داخل حقول الإدخال */
+    input, select, textarea {
+        padding: 11px; /* زيادة مساحة اللمس */
+        font-size: 13px; /* حجم خط مريح للعين */
+    }
+    .btn, .btn1 {
+        padding: 12px;
+        font-size: 13px;
+    }
+    
+    /* 5. حماية نصوص الجدول من الالتفاف أو التداخل المزعج */
+    th, td {
+        padding: 8px 4px;
+        font-size: 10px;
+        white-space: nowrap; /* منع النص من النزول لسطر جديد */
+    }
+    
+    /* تحسين مرونة أزرار التحكم السفلى */
+    .btnsc {
+        gap: 6px;
+    }
+    .btn1 {
+        font-size: 16px;
+        padding: 8px;
+    }
+
+    /* شريط فلاتر المناطق */
+    .filter-container {
+        padding: 8px;
+    }
+    .filter-chip {
+        padding: 6px 10px;
+        font-size: 10px;
+    }
+}
     </style>
 </head>
 <body>
