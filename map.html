@@ -27,7 +27,6 @@
         .admin-panel.hidden + .toggle-panel-btn { right: 0; }
         .panel-header { background: var(--primary); color: var(--secondary); padding: 15px; font-weight: bold; text-align: center; font-size: 14px; border-bottom: 2px solid var(--secondary); display: flex; flex-direction: row; align-items: center; gap: 8px; position: relative; }
         .panel-logo { max-height: 50px; width: auto; object-fit: contain; border-radius: 50px; }
-        /* زر خيارات التروس المتقدمة للإكسل */
         .settings-icon-btn { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); font-size: 20px; cursor: pointer; color: var(--secondary); user-select: none; transition: 0.2s; }
         .settings-icon-btn1 { position: absolute; left: 35px; top: 50%; transform: translateY(-50%); font-size: 20px; cursor: pointer; color: var(--secondary); user-select: none; transition: 0.2s; }
         .btnsc {
@@ -54,10 +53,8 @@
         .btn:hover { background: var(--primary); color: var(--secondary); }
         .btn-secondary { background: #fff; color: #555; border: 1px solid #ccc; }
         .btn-secondary:hover { background: #eee; color: #111; }
-        /* منطقة الخريطة */
         .map-container { flex: 1; position: relative; height: 100%; }
         #map { width: 100%; height: 100%; }
-        /* الشاشة الجانبية لبيانات الأرض (يسار) */
         .info-sidebar { position: absolute; left: -360px; top: 0; width: 360px; height: 100%; background: var(--light); box-shadow: -2px 0 15px rgba(0,0,0,0.1); z-index: 9999; transition: cubic-bezier(0.4, 0, 0.2, 1) 0.3s; display: flex; flex-direction: column; border-right: 1px solid var(--border-color); }
         .info-sidebar.open { left: 0; }
         .sidebar-header { background: var(--primary); color: var(--light); padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--secondary); }
@@ -75,13 +72,11 @@
         .info-item b::before { content: ''; position: absolute; right: 0; top: 4px; width: 3px; height: 8px; background: var(--secondary); }
         .close-btn { cursor: pointer; font-size: 22px; color: var(--secondary); border: none; background: none; line-height: 1; }
         .status-badge { display: inline-block; padding: 3px 8px; color: #fff; border-radius: 4px; font-size: 10px; font-weight: bold; }
-        /* شريط الفلاتر للمناطق المضاف */
         .filter-container { display: flex; gap: 6px; overflow-x: auto; padding: 10px; background: #fafafa; flex-flow: wrap; border-bottom: 1px solid var(--border-color); white-space: nowrap; scrollbar-width: thin; }
         .filter-chip { background: #fff; border: 1px solid #ccc; padding: 6px 12px; border-radius: 20px; font-size: 11px; font-weight: bold; cursor: pointer; transition: 0.2s; color: #555; display: inline-flex; align-items: center; gap: 4px; }
         .filter-chip:hover { border-color: var(--secondary); background: #fffdf5; }
         .filter-chip.active { background: var(--primary); color: var(--secondary); border-color: var(--secondary); }
         .filter-chip span { color: inherit; font-size: 10px; opacity: 0.8; }
-        /* جدول العقارات */
         .table-container { padding: 5px 10px; overflow-y: auto; flex: 1; }
         table { width: 100%; border-collapse: collapse; text-align: right; font-size: 11px; }
         th, td { padding: 10px 6px; border-bottom: 1px solid #eee; }
@@ -94,17 +89,13 @@
         .nested-accordion { border: 1px solid var(--border-color); border-radius: 4px; margin-top: 10px; overflow: hidden; }
         .nested-header { background: #f9f9f9; padding: 10px; font-weight: bold; cursor: pointer; font-size: 11px; display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); }
         .nested-content { padding: 12px; display: none; background: #fff; }
-        /* === الستايل الذكي لإصلاح الموبايل والتابلت === */
-/* === كود دك الحصون لإصلاح التابلت والموبايل نهائياً === */
 @media (max-width: 992px) {
-    /* منع الصفحة كلياً من التمدد العرضي أو الطولي الخارجي */
     html, body {
         width: 100vw !important;
         height: 100vh !important;
         overflow: hidden !important;
         position: relative !important;
     }
-    /* 1. جعل حاوية الخريطة تمتد كخلفية ثابتة على كامل أبعاد الشاشة خلف اللوحات */
     .map-container {
         position: absolute !important;
         left: 0 !important;
@@ -117,26 +108,23 @@
         width: 100% !important;
         height: 100% !important;
     }
-    /* 2. تحويل لوحة التحكم اليمنى لطبقة عائمة مستقلة تماماً عن حركة الخريطة */
     .admin-panel {
         position: fixed !important;
         right: 0 !important;
         top: 0 !important;
         height: 100% !important;
-        width: 300px !important; /* عرض مثالي ومريح لشاشات اللمس */
+        width: 300px !important; 
         max-width: 80vw !important;
-        z-index: 9999 !important; /* طبقة عليا */
+        z-index: 9999 !important; 
         background: var(--light) !important;
         box-shadow: -5px 0 15px rgba(0,0,0,0.15) !important;
         transform: translateX(0) !important;
         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
-    /* عند إخفاء اللوحة تنزلق بكامل أناقتها خارج الشاشة لجهة اليمين */
     .admin-panel.hidden {
         transform: translateX(100%) !important;
-        width: 300px !important; /* الحفاظ على العرض ثابت لمنع انكماش الجداول أثناء الحركة */
+        width: 300px !important; 
     }
-    /* 3. ضبط تموضع زر السهم (التحكم باللوحة) ليتحرك بالتوازي مع عرض اللوحة الجديد */
     .toggle-panel-btn {
         position: fixed !important;
         right: 300px !important;
@@ -150,22 +138,20 @@
     .admin-panel.hidden + .toggle-panel-btn {
         right: 0 !important;
     }
-    /* 4. تحويل الشاشة الجانبية اليسرى (التفاصيل) لتطفو فوق الخريطة بشكل منعزل */
     .info-sidebar {
         position: fixed !important;
-        left: -320px !important; /* تبدأ مخفية خارج حدود الشاشة يساراً */
+        left: -320px !important; 
         top: 0 !important;
         width: 300px !important;
         max-width: 85vw !important;
         height: 100% !important;
-        z-index: 10005 !important; /* أعلى من اللوحة اليمنى لتغطيها وتمنع التداخل عند النقر على أرض */
+        z-index: 10005 !important; 
         box-shadow: 5px 0 15px rgba(0,0,0,0.15) !important;
         transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
     .info-sidebar.open {
         left: 0 !important;
     }
-    /* 5. تحسين مرونة عناصر الواجهة واللمس داخل الجداول والحقول */
     input, select, textarea {
         padding: 11px !important;
         font-size: 13px !important;
@@ -177,7 +163,7 @@
     th, td {
         padding: 8px 4px !important;
         font-size: 10px !important;
-        white-space: nowrap !important; /* منع النصوص من التداخل والنزول السطري */
+        white-space: nowrap !important; 
     }
     .btnsc {
         gap: 6px !important;
