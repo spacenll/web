@@ -117,81 +117,109 @@
         .nested-header { background: #f9f9f9; padding: 10px; font-weight: bold; cursor: pointer; font-size: 11px; display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); }
         .nested-content { padding: 12px; display: none; background: #fff; }
         /* === الستايل الذكي لإصلاح الموبايل والتابلت === */
+/* === كود دك الحصون لإصلاح التابلت والموبايل نهائياً === */
 @media (max-width: 992px) {
-    /* 1. تحويل اللوحة اليمنى لطبقة عائمة فوق الخريطة بدلاً من ضغطها */
-    .admin-panel {
-        position: absolute;
-        right: 0;
-        top: 0;
-        height: 100%;
-        width: 310px; /* تصغير العرض ليناسب التابلت والهواتف */
-        max-width: 85vw; /* الحفاظ على مساحة أمان لرؤية الخريطة */
-        box-shadow: -5px 0 15px rgba(0,0,0,0.15);
-        transform: translateX(0);
-        transition: transform 0.3s ease;
-    }
-    
-    /* حركة إخفاء اللوحة المحدثة ديناميكياً */
-    .admin-panel.hidden {
-        transform: translateX(100%) !important;
-        width: 0 !important;
-        min-width: 0 !important;
+    /* منع الصفحة كلياً من التمدد العرضي أو الطولي الخارجي */
+    html, body {
+        width: 100vw !important;
+        height: 100vh !important;
+        overflow: hidden !important;
+        position: relative !important;
     }
 
-    /* 2. تعديل تموضع زر الإخفاء والظهور ليتوافق مع العرض الجديد */
+    /* 1. جعل حاوية الخريطة تمتد كخلفية ثابتة على كامل أبعاد الشاشة خلف اللوحات */
+    .map-container {
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        z-index: 1 !important;
+    }
+    #map {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    /* 2. تحويل لوحة التحكم اليمنى لطبقة عائمة مستقلة تماماً عن حركة الخريطة */
+    .admin-panel {
+        position: fixed !important;
+        right: 0 !important;
+        top: 0 !important;
+        height: 100% !important;
+        width: 300px !important; /* عرض مثالي ومريح لشاشات اللمس */
+        max-width: 80vw !important;
+        z-index: 9999 !important; /* طبقة عليا */
+        background: var(--light) !important;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.15) !important;
+        transform: translateX(0) !important;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+
+    /* عند إخفاء اللوحة تنزلق بكامل أناقتها خارج الشاشة لجهة اليمين */
+    .admin-panel.hidden {
+        transform: translateX(100%) !important;
+        width: 300px !important; /* الحفاظ على العرض ثابت لمنع انكماش الجداول أثناء الحركة */
+    }
+
+    /* 3. ضبط تموضع زر السهم (التحكم باللوحة) ليتحرك بالتوازي مع عرض اللوحة الجديد */
     .toggle-panel-btn {
-        right: 310px !important;
-        padding: 18px 8px; /* تكبير الزر قليلاً لسهولة الضغط بالإصبع */
-        font-size: 14px;
+        position: fixed !important;
+        right: 300px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        z-index: 10000 !important;
+        transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        padding: 16px 8px !important;
+        font-size: 14px !important;
     }
     .admin-panel.hidden + .toggle-panel-btn {
         right: 0 !important;
     }
 
-    /* 3. تصنيع ملاءمة كاملة للشاشة الجانبية (اليسرى) على الهواتف */
+    /* 4. تحويل الشاشة الجانبية اليسرى (التفاصيل) لتطفو فوق الخريطة بشكل منعزل */
     .info-sidebar {
-        width: 310px;
-        left: -310px;
-        max-width: 85vw;
-        z-index: 99999; /* رفع الأولوية فوق كل شيء */
+        position: fixed !important;
+        left: -320px !important; /* تبدأ مخفية خارج حدود الشاشة يساراً */
+        top: 0 !important;
+        width: 300px !important;
+        max-width: 85vw !important;
+        height: 100% !important;
+        z-index: 10005 !important; /* أعلى من اللوحة اليمنى لتغطيها وتمنع التداخل عند النقر على أرض */
+        box-shadow: 5px 0 15px rgba(0,0,0,0.15) !important;
+        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
     .info-sidebar.open {
-        left: 0;
+        left: 0 !important;
     }
 
-    /* 4. تحسينات مريحة للمس بالإصبع داخل حقول الإدخال */
+    /* 5. تحسين مرونة عناصر الواجهة واللمس داخل الجداول والحقول */
     input, select, textarea {
-        padding: 11px; /* زيادة مساحة اللمس */
-        font-size: 13px; /* حجم خط مريح للعين */
+        padding: 11px !important;
+        font-size: 13px !important;
     }
     .btn, .btn1 {
-        padding: 12px;
-        font-size: 13px;
+        padding: 12px !important;
+        font-size: 13px !important;
     }
-    
-    /* 5. حماية نصوص الجدول من الالتفاف أو التداخل المزعج */
     th, td {
-        padding: 8px 4px;
-        font-size: 10px;
-        white-space: nowrap; /* منع النص من النزول لسطر جديد */
+        padding: 8px 4px !important;
+        font-size: 10px !important;
+        white-space: nowrap !important; /* منع النصوص من التداخل والنزول السطري */
     }
-    
-    /* تحسين مرونة أزرار التحكم السفلى */
     .btnsc {
-        gap: 6px;
+        gap: 6px !important;
     }
     .btn1 {
-        font-size: 16px;
-        padding: 8px;
+        font-size: 16px !important;
+        padding: 8px !important;
     }
-
-    /* شريط فلاتر المناطق */
     .filter-container {
-        padding: 8px;
+        padding: 8px !important;
     }
     .filter-chip {
-        padding: 6px 10px;
-        font-size: 10px;
+        padding: 6px 10px !important;
+        font-size: 10px !important;
     }
 }
     </style>
