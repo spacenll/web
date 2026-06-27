@@ -324,7 +324,7 @@
             </table>
         </div>
     </div>
-    <button id="toggle-panel-btn" class="toggle-panel-btn" onclick="toggleAdminPanel()">◀</button>
+    <button id="toggle-panel-btn" class="toggle-panel-btn" onclick="toggleAdminPanel()">▶</button>
     <div class="map-container">
         <div id="map"></div>
         <div id="info-sidebar" class="info-sidebar">
@@ -380,9 +380,9 @@ function openInGoogleEarth(layer) {
             const btn = document.getElementById('toggle-panel-btn');
             panel.classList.toggle('hidden');
             if(panel.classList.contains('hidden')) {
-                btn.innerText = '▶';
-            } else {
                 btn.innerText = '◀';
+            } else {
+                btn.innerText = '▶';
             }
             setTimeout(() => { map.invalidateSize(); }, 300); 
         }
