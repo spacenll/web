@@ -194,10 +194,8 @@
             <h4 style="font-size: 11px; margin-bottom: 8px; font-weight: bold;">إدارة قاعدة البيانات (Excel):</h4>
             <div style="display:flex; gap:8px;">
                 <button type="button" class="filter-chip" style="flex:1; margin-top:0;" onclick="exportToExcel()">تصدير</button>
-                <label class="filter-chip" style="flex:1; margin-top:0;">
-                    استراد
-                    <input type="file" id="excel-import-file" accept=".xlsx, .xls" style="display:none;" onchange="importFromExcel(this)">
-                </label>
+               
+                <button type="button" class="filter-chip" style="flex:1; margin-top:0;" onclick="importFromExcel()">استيراد</button>
             </div>
             <button type="button" class="filter-chip" style="width:100%; margin-top:8px;" onclick="clearAllDataSystem()">إعادة تعيين البيانات</button>
         </div>
