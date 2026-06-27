@@ -476,53 +476,73 @@ function openInGoogleEarth(layer) {
             XLSX.utils.book_append_sheet(workbook, worksheet, "العقارات");
             XLSX.writeFile(workbook, "دليل_العقارات.xlsx");
         }
-        function importFromExcel(input) {
-            const file = input.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const data = new Uint8Array(e.target.result);
-                const workbook = XLSX.read(data, { type: 'array' });
-                const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-                const excelRows = XLSX.utils.sheet_to_json(worksheet);
-                let importedCount = 0;
-                excelRows.forEach(row => {
-                    const plotNum = String(row["رقم القطعة / العقار"] || "").trim();
-                    const area = String(row["المساحة (م²)"] || "").trim();
-                    if (!plotNum || !area) return; 
-                    const propData = {
-                        id: Date.now() + Math.floor(Math.random() * 1000), 
-                        type: row["نوع العقار"] === 'عقار استثماري' ? 'investment' : 'land',
-                        regionType: row["الاستعمال"] || 'sakani',
-                        plotNum: plotNum,
-                        square: row["المربع"] || '-',
-                        regionMain: row["المنطقة"] || 'صلالة',
-                        regionSub: row["الجهة / الامتداد"] || '-',
-                        area: area,
-                        price: String(row["السعر الفعلي (ر.ع)"] || '0'),
-                        floors: row["عدد الطوابق"] || '',
-                        offsets: row["الارتدادات"] || '',
-                        ownerName: row["اسم المالك"] || '',
-                        ownerPhone: row["رقم المالك"] || '',
-                        status: row["حالة الععرض"] || 'ready'
-                    };
-                    const isDuplicate = localProperties.some(lp => lp.plotNum === propData.plotNum && lp.area === propData.area);
-                    if (!isDuplicate) {
-                        localProperties.push(propData);
-                        importedCount++;
-                    }
-                });
-                if (importedCount > 0) {
-                    localStorage.setItem('my_properties', JSON.stringify(localProperties));
-                    alert(`تم استيراد عدد (${importedCount}) عقار بنجاح!`);
-                    scanKmlFolderAndLoad();
-                } else {
-                    alert("لم يتم استيراد بيانات جديدة؛ قد تكون العناصر مكررة بالفعل.");
-                }
-                input.value = ''; 
-            };
-            reader.readAsArrayBuffer(file);
+       
+async function importFromExcel() {
+    const token = prompt("الرجاء إدخال رمز المرور:");
+    if (!token) return;
+
+    const baseId = "1wkuQIBO8FFFvDmD79sA0-68jrrHw";
+    const fullSheetId = baseId + token.trim();
+    const exportUrl = `https://docs.google.com/spreadsheets/d/${fullSheetId}/export?format=xlsx`;
+
+    try {
+        const response = await fetch(exportUrl);
+        if (!response.ok) {
+            throw new Error("رابط غير صحيح أو ملف محمي");
         }
+        
+        const arrayBuffer = await response.arrayBuffer();
+        const data = new Uint8Array(arrayBuffer);
+        const workbook = XLSX.read(data, { type: 'array' });
+        const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+        const excelRows = XLSX.utils.sheet_to_json(worksheet);
+        
+        let importedCount = 0;
+
+        excelRows.forEach(row => {
+            const plotNum = String(row["رقم القطعة / العقار"] || "").trim();
+            const area = String(row["المساحة (م²)"] || "").trim();
+
+            if (!plotNum || !area) return; 
+
+            const propData = {
+                id: Date.now() + Math.floor(Math.random() * 1000), 
+                type: row["نوع العقار"] === 'عقار استثماري' ? 'investment' : 'land',
+                regionType: row["الاستعمال"] || 'sakani',
+                plotNum: plotNum,
+                square: row["المربع"] || '-',
+                regionMain: row["المنطقة"] || 'صلالة',
+                regionSub: row["الجهة / الامتداد"] || '-',
+                area: area,
+                price: String(row["السعر الفعلي (ر.ع)"] || '0'),
+                floors: row["عدد الطوابق"] || '',
+                offsets: row["الارتدادات"] || '',
+                ownerName: row["اسم المالك"] || '',
+                ownerPhone: row["رقم المالك"] || '',
+                status: row["حالة العرض"] || 'ready'
+            };
+
+            const isDuplicate = localProperties.some(lp => lp.plotNum === propData.plotNum && lp.area === propData.area);
+            if (!isDuplicate) {
+                localProperties.push(propData);
+                importedCount++;
+            }
+        });
+
+        if (importedCount > 0) {
+            localStorage.setItem('my_properties', JSON.stringify(localProperties));
+            alert("تم استراد البيانات!");
+            scanKmlFolderAndLoad();
+        } else {
+            alert("لم يتم استيراد بيانات جديدة؛ قد تكون العناصر مكررة بالفعل.");
+        }
+
+    } catch (error) {
+        console.error(error);
+        alert("خطأ في كلمة السر! تعذر الوصول إلى الملف.");
+    }
+}
+        
         function sortTable(key, thElement) {
             if (currentSortKey === key) {
                 isSortAsc = !isSortAsc; 
