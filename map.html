@@ -21,14 +21,30 @@
         * { box-sizing: border-box; font-family: 'Alexandria', sans-serif; margin: 0; padding: 0; }
         body { display: flex; height: 100vh; background: var(--light); overflow: hidden; color: var(--primary); position: relative; }
         .leaflet-control-container .leaflet-top { top: 40px; }
-        .admin-panel { width: 400px; background: var(--light); box-shadow: 2px 0 10px rgba(0,0,0,0.05); display: flex; flex-direction: column; z-index: 1000; overflow-y: auto; border-left: 1px solid var(--border-color); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; }
+        .admin-panel { width: 400px; background: #fffffff1; box-shadow: 2px 0 10px rgba(0,0,0,0.05); display: flex; flex-direction: column; z-index: 1000; overflow-y: auto; border-left: 1px solid var(--border-color); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: absolute;     top: 50px;    border-radius: 20px;}
         .admin-panel.hidden { transform: translateX(400px); width: 0; min-width: 0; }
-        .toggle-panel-btn { position: absolute; right: 400px; top: 50%; transform: translateY(-50%); background: var(--primary); border: 1px solid var(--secondary); border-right: none; color: var(--secondary); padding: 15px 6px; cursor: pointer; z-index: 2000; border-radius: 4px 0 0 4px; font-size: 11px; transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1); font-weight: bold; }
+        .toggle-panel-btn { position: absolute; right: 400px; top: 50%; transform: translateY(-50%); background: white; border: 1px solid var(--secondary); border-right: none; color: var(--secondary); padding: 15px 6px; cursor: pointer; z-index: 2000; border-radius: 4px 0 0 4px; font-size: 11px; transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1); font-weight: bold; }
         .admin-panel.hidden + .toggle-panel-btn { right: 0; }
-        .panel-header { background: var(--primary); color: var(--secondary); padding: 15px; font-weight: bold; text-align: center; font-size: 14px; border-bottom: 2px solid var(--secondary); display: flex; flex-direction: row; align-items: center; gap: 8px; position: relative; }
+        .panel-header { color: var(--secondary);
+            opacity: .8;
+padding: 15px;
+font-weight: bold;
+text-align: center;
+font-size: 14px;
+display: flex;
+align-items: center;
+gap: 8px;
+
+position: fixed;
+bottom: 10px;
+left: 50%;
+transform: translateX(-50%);
+
+z-index: 9999;}
         .panel-logo { max-height: 50px; width: auto; object-fit: contain; border-radius: 50px; }
         .settings-icon-btn { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); font-size: 20px; cursor: pointer; color: var(--secondary); user-select: none; transition: 0.2s; }
         .settings-icon-btn1 { position: absolute; left: 35px; top: 50%; transform: translateY(-50%); font-size: 20px; cursor: pointer; color: var(--secondary); user-select: none; transition: 0.2s; }
+      
         .btnsc {
           display: flex;
           justify-content: center; 
@@ -37,27 +53,66 @@
           padding-bottom: 10px;
           box-sizing: border-box;
         }
+      .modal-bg {
+        position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+
+    z-index: 9999;
+}
+
+.modal-bg.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+#advanced-settings-content {
+    opacity: 0;
+    visibility: hidden;
+    transition: .3s;
+}
+
+#advanced-settings-content.show {
+    opacity: 1;
+    visibility: visible;
+}
         .collapsible-header { background: var(--gray-bg); color: var(--primary); padding: 14px 15px; font-weight: bold; font-size: 13px; cursor: pointer; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; transition: 0.2s; border-right: 3px solid var(--secondary); }
         .collapsible-header:hover { background: #f5f5f5; }
-        .collapsible-content { padding: 15px; border-bottom: 1px solid var(--border-color); background: #fff; display: none; }
+        .collapsible-content {     position: fixed;
+            display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    max-width: 90%;
+    min-height: 150px;
+    padding: 30px;
+    background: rgb(250, 250, 250);
+    border: 2px solid var(--secondary);
+    z-index: 10000;
+    border-radius: 20px;}
         .collapsible-content.active { display: block; }
         .arrow-icon { transition: transform 0.3s; font-size: 10px; color: var(--secondary); }
         .active .arrow-icon { transform: rotate(180deg); }
         .form-group { margin-bottom: 12px; }
         .form-group label { display: block; font-size: 11px; margin-bottom: 4px; color: #555; }
         .form-row { display: flex; gap: 8px; }
-        input, select, textarea { width: 100%; padding: 9px; border: 1px solid #ccc; border-radius: 4px; font-size: 12px; background: #fff; color: var(--primary); }
+        input, select, textarea { width: 100%; padding: 9px; border: 1px solid #ccc; border-radius: 20px; font-size: 12px; background: #fff; color: var(--primary); }
         input:focus, select:focus { border-color: var(--secondary); outline: none; }
-        .btn { background: #d4af37; color: var(--primary); border: 1px solid var(--secondary); padding: 11px; width: 100%; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 12px; margin-top: 10px; transition: 0.2s; text-align: center; }
-        .btn1 { background: white; color: var(--primary); border: 0px solid var(--secondary); padding: 11px; width: 100%; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 18px; margin-top: 10px; transition: 0.2s; }
+        .btn { background: #d4af37; color: var(--primary); border: 1px solid var(--secondary); padding: 11px; width: 100%; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 12px; margin-top: 10px; transition: 0.2s; text-align: center; }
+        .btn1 { background: white; color: var(--primary); border: 0px solid var(--secondary); padding: 11px; width: 100%; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 18px; margin-top: 10px; transition: 0.2s; }
         .btn:hover { background: var(--primary); color: var(--secondary); }
         .btn-secondary { background: #fff; color: #555; border: 1px solid #ccc; }
         .btn-secondary:hover { background: #eee; color: #111; }
         .map-container { flex: 1; position: relative; height: 100%; }
         #map { width: 100%; height: 100%; }
-        .info-sidebar { position: absolute; left: -360px; top: 0; width: 360px; height: 100%; background: var(--light); box-shadow: -2px 0 15px rgba(0,0,0,0.1); z-index: 9999; transition: cubic-bezier(0.4, 0, 0.2, 1) 0.3s; display: flex; flex-direction: column; border-right: 1px solid var(--border-color); }
+        .info-sidebar { position: absolute; left: -360px; top: 0; border-radius: 20px; width: 360px; height: 100%; background: #ffffffd1; box-shadow: -2px 0 15px rgba(0,0,0,0.1); z-index: 9999; transition: cubic-bezier(0.4, 0, 0.2, 1) 0.3s; display: flex; flex-direction: column; border-right: 1px solid var(--border-color); }
         .info-sidebar.open { left: 0; }
-        .sidebar-header { background: var(--primary); color: var(--light); padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--secondary); }
+        .sidebar-header {     border-radius: 20px; background: #111111eb; color: var(--light); padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--secondary); }
         .sidebar-header h2 { font-size: 14px; color: var(--secondary); }
         .sidebar-body { padding: 15px; overflow-y: auto; flex: 1; font-size: 12px; }
         .info-item1 { 
@@ -72,20 +127,27 @@
         .info-item b::before { content: ''; position: absolute; right: 0; top: 4px; width: 3px; height: 8px; background: var(--secondary); }
         .close-btn { cursor: pointer; font-size: 22px; color: var(--secondary); border: none; background: none; line-height: 1; }
         .status-badge { display: inline-block; padding: 3px 8px; color: #fff; border-radius: 4px; font-size: 10px; font-weight: bold; }
-        .filter-container { display: flex; gap: 6px; overflow-x: auto; padding: 10px; background: #fafafa; flex-flow: wrap; border-bottom: 1px solid var(--border-color); white-space: nowrap; scrollbar-width: thin; }
-        .filter-chip { background: #fff; border: 1px solid #ccc; padding: 6px 12px; border-radius: 20px; font-size: 11px; font-weight: bold; cursor: pointer; transition: 0.2s; color: #555; display: inline-flex; align-items: center; gap: 4px; }
+        .filter-container { display: flex; gap:6px; position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    z-index: 1000;
+    background: transparent;
+    border: none; }
+        .filter-chip { background: #fff; box-shadow: 1px 1px 20px 2px #000000b5; border: 1px solid #ccc; padding: 6px 12px; border-radius: 20px; font-size: 11px; font-weight: bold; cursor: pointer; transition: 0.2s; color: #555; display: inline-flex; align-items: center; gap: 4px; }
+         .filter-chip1 { background: #fff; border: 1px solid #ccc; padding: 6px 12px; border-radius: 20px; font-size: 11px; font-weight: bold; cursor: pointer; transition: 0.2s; color: #555; display: inline-flex; align-items: center; gap: 4px; }
         .filter-chip:hover { border-color: var(--secondary); background: #fffdf5; }
-        .filter-chip.active { background: var(--primary); color: var(--secondary); border-color: var(--secondary); }
+        .filter-chip.active { background:#d4af37; color:  #000000; border-color: #000000; }
         .filter-chip span { color: inherit; font-size: 10px; opacity: 0.8; }
         .table-container { padding: 5px 10px; overflow-y: auto; flex: 1; }
         table { width: 100%; border-collapse: collapse; text-align: right; font-size: 11px; }
         th, td { padding: 10px 6px; border-bottom: 1px solid #eee; }
-        th { background: #fafafa; color: #333; font-weight: bold; cursor: pointer; user-select: none; transition: background 0.2s; }
+        th { background: #ffffffd1; border-radius: 20px; color: #333; font-weight: bold; cursor: pointer; user-select: none; transition: background 0.2s; }
         th:hover { background: #eedda5; }
         th.sort-asc::after { content: " ▲"; font-size: 9px; color: var(--secondary); }
         th.sort-desc::after { content: " ▼"; font-size: 9px; color: var(--secondary); }
         tr:hover { background: #fdfaf2; cursor: pointer; }
-        .croky-preview { max-width: 100%; border-radius: 4px; border: 1px solid var(--border-color); margin-top: 5px; }
+        .croky-preview { max-width: 100%;  border-radius: 20px; border: 1px solid var(--border-color); margin-top: 5px; }
         .nested-accordion { border: 1px solid var(--border-color); border-radius: 4px; margin-top: 10px; overflow: hidden; }
         .nested-header { background: #f9f9f9; padding: 10px; font-weight: bold; cursor: pointer; font-size: 11px; display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); }
         .nested-content { padding: 12px; display: none; background: #fff; }
@@ -141,7 +203,7 @@
     .info-sidebar {
         position: fixed !important;
         left: -320px !important; 
-        top: 0 !important;
+        top: 50px ;
         width: 300px !important;
         max-width: 85vw !important;
         height: 100% !important;
@@ -183,23 +245,10 @@
     </style>
 </head>
 <body>
-    <div id="admin-panel" class="admin-panel">
-        <div class="panel-header">
-            <div class="settings-icon-btn" onclick="toggleSectionDirect('advanced-settings-content')" title="خيارات متقدمة">≡</div>
-             <div class="settings-icon-btn1" onclick="toggleSection('add-land-content')" title="اضافة">+</div>
-            <img src="lib/kmls/img/logo.png" alt="الشعار" class="panel-logo" onerror="this.style.display='none'">
-            <span>الملكية للإستثمار</span>
-        </div>
-        <div id="advanced-settings-content" style="display: none; padding: 15px; background: #fafafa; border-bottom: 2px solid var(--secondary);">
-            <h4 style="font-size: 11px; margin-bottom: 8px; font-weight: bold;">إدارة قاعدة البيانات (Excel):</h4>
-            <div style="display:flex; gap:8px;">
-                <button type="button" class="filter-chip" style="flex:1; margin-top:0;" onclick="exportToExcel()">تصدير</button>
-               
-                <button type="button" class="filter-chip" style="flex:1; margin-top:0;" onclick="importFromExcel()">استيراد</button>
-            </div>
-            <button type="button" class="filter-chip" style="width:100%; margin-top:8px;" onclick="clearAllDataSystem()">إعادة تعيين البيانات</button>
-        </div>
-        <div id="add-land-content" class="collapsible-content">
+      <div id="add-land-content" class="collapsible-content">
+                <h4 style="font-size: 15px; margin-bottom: 8px; font-weight: bold;">اضافة ارض</h4>
+                <br>
+          <div style="font-size: 22px; color:var(--secondary); cursor: pointer;position: absolute;left: 20px; top:10px;" onclick="toggleSection('add-land-content')" title="اغلاق">x</div>
             <form id="land-form">
                 <input type="hidden" id="edit-id">
                 <div class="form-row">
@@ -222,7 +271,7 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group" style="flex:2;">
-                        <label>رقم القطعة / العقار (يقبل أرقام وأحرف)</label>
+                        <label>رقم القطعة </label>
                         <input type="text" id="plot-num" required placeholder="مثال: 21 أو 1146D">
                     </div>
                     <div class="form-group" style="flex:1;">
@@ -306,9 +355,13 @@
                 <button type="submit" id="submit-btn" class="btn">حفظ</button>
                 <button type="button" id="cancel-edit-btn" class="btn btn-secondary" style="display:none; margin-top:5px;">إلغاء</button>
             </form>
+      
         </div>
-        <div id="region-filter-bar" class="filter-container">
-            </div>
+    <div id="admin-panel" class="admin-panel">
+       
+      
+         
+          
         <div class="table-container">
             <table>
                 <thead>
@@ -326,6 +379,28 @@
     </div>
     <button id="toggle-panel-btn" class="toggle-panel-btn" onclick="toggleAdminPanel()">▶</button>
     <div class="map-container">
+         <div class="panel-header">
+       
+            <img src="lib/kmls/img/logo.png" alt="الشعار" class="panel-logo" onerror="this.style.display='none'">
+            <span>الملكية للإستثمار</span>
+        </div>
+        <div class="modal-bg">  
+        <div id="advanced-settings-content" style=" position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 400px; max-width: 90%; min-height: 150px; padding: 15px; background: rgb(250, 250, 250); border: 2px solid var(--secondary); z-index: 10000; border-radius: 20px;">
+            <h4 style="font-size: 15px; margin-bottom: 8px; font-weight: bold;">إدارة البيانات</h4>
+            <div style="font-size: 22px; color:var(--secondary); cursor: pointer;position: absolute;left: 20px; top:10px;" onclick="toggleSectionDirect('advanced-settings-content')" title="اغلاق">x</div>
+            <br>
+           
+            <div style="display:flex; gap:8px;">
+                <button type="button" class="filter-chip1" style="flex:1; margin-top:0;" onclick="exportToExcel()">تصدير</button>
+               
+                <button type="button" class="filter-chip1" style="flex:1; margin-top:0;" onclick="importFromExcel()">استيراد</button>
+            </div>
+            <button type="button" class="filter-chip1" style="width:100%; margin-top:8px;" onclick="clearAllDataSystem()">إعادة تعيين البيانات</button>
+        </div>
+        </div> 
+        <div id="region-filter-bar" class="filter-container">
+            <div class="filter-chip" onclick="toggleSection('add-land-content')" title="اضافة">+</div>
+            </div>
         <div id="map"></div>
         <div id="info-sidebar" class="info-sidebar">
             <div class="sidebar-header">
@@ -440,15 +515,20 @@ function openInGoogleEarth(layer) {
                 allLandsLayers.length = 0;
                 resetForm();
                 toggleSidebar(false);
-                document.getElementById('advanced-settings-content').style.display = 'none';
+             document.querySelector('.modal-bg').classList.remove('show');
+                
                 scanKmlFolderAndLoad();
                 alert("تم اعادة تعيين البيانات بنجاح");
             }
         }
-        function toggleSectionDirect(id) {
-            const el = document.getElementById(id);
-            el.style.display = (el.style.display === 'block') ? 'none' : 'block';
-        }
+function toggleSectionDirect(id) {
+    const el = document.getElementById(id);
+    const bg = document.querySelector('.modal-bg');
+
+    el.classList.toggle('show');
+    bg.classList.toggle('show');
+}
+
         function exportToExcel() {
             if (localProperties.length === 0) {
                 alert("لا توجد بيانات مضافة يدوياً لتصديرها حالياً!");
@@ -568,6 +648,7 @@ async function importFromExcel() {
             const filterBar = document.getElementById('region-filter-bar');
             const regionsList = ['الكل', 'صلالة', 'السعادة', 'الدهاريز', 'عوقد', 'صحلنوت', 'مرباط', 'مسقط', 'بركاء'];
             filterBar.innerHTML = '';
+            
             regionsList.forEach(reg => {
                 let count = 0;
                 if (reg === 'الكل') {
@@ -583,19 +664,45 @@ async function importFromExcel() {
                     updateUI(); 
                 });
                 filterBar.appendChild(chip);
+                
             });
+                
+               filterBar.insertAdjacentHTML(
+    'beforeend',
+    '<div class="filter-chip" onclick="toggleSection(\'add-land-content\')" title="اضافة">+</div>'
+        
+);
+   filterBar.insertAdjacentHTML(
+    'afterbegin',
+    '<div class="filter-chip" onclick="toggleSectionDirect(\'advanced-settings-content\')" title="ادارة">≡</div>'
+    
+);
         }
-        function toggleSection(id) {
-            const el = document.getElementById(id);
-            const header = el.previousElementSibling;
-            if (el.classList.contains('active')) {
-                el.classList.remove('active');
-                header.classList.remove('active');
-            } else {
-                el.classList.add('active');
-                header.classList.add('active');
-            }
+ 
+      function toggleSection(id) {
+    const el = document.getElementById(id);
+
+    if (!el) {
+        console.error('Element not found:', id);
+        return;
+    }
+
+    const header = el.previousElementSibling;
+
+    if (el.classList.contains('active')) {
+        el.classList.remove('active');
+
+        if (header) {
+            header.classList.remove('active');
         }
+    } else {
+        el.classList.add('active');
+
+        if (header) {
+            header.classList.add('active');
+        }
+    }
+}
         document.getElementById('land-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const editId = document.getElementById('edit-id').value;
