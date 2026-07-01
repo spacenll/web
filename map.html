@@ -365,7 +365,8 @@
             </form>
       
         </div>
-    <div id="admin-panel" class="admin-panel">
+       <div id="admin-panel" class="admin-panel hidden">
+
        
       
          
@@ -722,9 +723,9 @@ usageTypes.forEach(item=>{
     const regionCenters = {
         "صلالة":[17.0197,54.0897],
         "السعادة":[17.0530,54.1530],
-        "الدهاريز":[17.0210,54.1240],
+        "الدهاريز":[17.027819814048563, 54.16463803424357],
         "عوقد":[17.0400,54.0300],
-        "صحلنوت":[17.0780,54.1550],
+        "صحلنوت":[17.08830254395776, 54.19122524300502],
         "مرباط":[16.9900,54.6900],
         "مسقط":[23.5880,58.3829],
         "بركاء":[23.6787,57.8860]
@@ -740,6 +741,18 @@ usageTypes.forEach(item=>{
             }
         );
     }
+    else {
+         map.flyTo(
+        [17.0197, 54.0897], 
+        13,
+            {
+                animate:true,
+                duration:1.5
+            }
+        );
+    }
+
+  
 
     updateUI();
 });
@@ -1068,9 +1081,15 @@ window.currentActiveLayer = layer;
             const p = properties.find(item => item.id == id);
             if(foundLayer) {
                 if (foundLayer.getBounds) {
-                    map.fitBounds(foundLayer.getBounds(), { maxZoom: 18, padding: [50, 50] });
+                   map.flyToBounds(foundLayer.getBounds(), { maxZoom: 18, padding: [50, 50],  duration: 1 });
                 } else if (foundLayer.getLatLng) {
-                    map.setView(foundLayer.getLatLng(), 18);
+                   map.flyTo(
+    foundLayer.getLatLng(),
+    18,
+    {
+        duration: 1
+    }
+);
                 }
                 showPropertyDetails(p, foundLayer);
             } else if(p) {
