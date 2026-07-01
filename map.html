@@ -21,26 +21,18 @@
         * { box-sizing: border-box; font-family: 'Alexandria', sans-serif; margin: 0; padding: 0; }
         body { display: flex; height: 100vh; background: var(--light); overflow: hidden; color: var(--primary); position: relative; }
         .leaflet-control-container .leaflet-top { top: 40px; }
-        .admin-panel { width: 400px; background: #fffffff1; box-shadow: 2px 0 10px rgba(0,0,0,0.05); display: flex; flex-direction: column; z-index: 1000; overflow-y: auto; border-left: 1px solid var(--border-color); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: absolute;     top: 50px;    border-radius: 20px;}
+        .admin-panel { width: 400px; background: #fffffff1; box-shadow: 2px 0 10px rgba(0,0,0,0.05); display: flex; flex-direction: column; z-index: 99999; overflow-y: auto; border-left: 1px solid var(--border-color); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: absolute;     top: 70px;   }
         .admin-panel.hidden { transform: translateX(400px); width: 0; min-width: 0; }
-        .toggle-panel-btn { position: absolute; right: 400px; top: 12%; transform: translateY(-50%); background: white; border: 1px solid var(--secondary); border-right: none; color: var(--secondary); padding: 15px 6px; cursor: pointer; z-index: 2000; border-radius: 4px 0 0 4px; font-size: 11px; transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1); font-weight: bold; }
+        .toggle-panel-btn { position: absolute; right: 400px; top: 50%; transform: translateY(-50%); background: white; border: 1px solid var(--secondary); border-right: none; color: var(--secondary); padding: 15px 6px; cursor: pointer; z-index: 2000; border-radius: 4px 0 0 4px; font-size: 11px; transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1); font-weight: bold; }
         .admin-panel.hidden + .toggle-panel-btn { right: 0; }
-        .panel-header { color: var(--secondary);
-            opacity: .8;
-padding: 15px;
-font-weight: bold;
-text-align: center;
-font-size: 14px;
-display: flex;
-align-items: center;
-gap: 8px;
-
-position: fixed;
-bottom: 10px;
-left: 50%;
-transform: translateX(-50%);
-
-z-index: 9999;}
+        .panel-header {color: var(--secondary);
+    font-weight: bold;
+    text-align: center;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 9999;}
         .panel-logo { max-height: 50px; width: auto; object-fit: contain; border-radius: 50px; }
         .settings-icon-btn { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); font-size: 20px; cursor: pointer; color: var(--secondary); user-select: none; transition: 0.2s; }
         .settings-icon-btn1 { position: absolute; left: 35px; top: 50%; transform: translateY(-50%); font-size: 20px; cursor: pointer; color: var(--secondary); user-select: none; transition: 0.2s; }
@@ -112,7 +104,7 @@ z-index: 9999;}
         #map { width: 100%; height: 100%; }
         .info-sidebar { position: absolute; left: -360px; top: 0; border-radius: 20px; width: 360px; height: 100%; background: #ffffffd1; box-shadow: -2px 0 15px rgba(0,0,0,0.1); z-index: 9999; transition: cubic-bezier(0.4, 0, 0.2, 1) 0.3s; display: flex; flex-direction: column; border-right: 1px solid var(--border-color); }
         .info-sidebar.open { left: 0; }
-        .sidebar-header {     border-radius: 20px; background: #111111eb; color: var(--light); padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--secondary); }
+        .sidebar-header { background: #ffffffeb; color: var(--light); padding: 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--secondary); }
         .sidebar-header h2 { font-size: 14px; color: var(--secondary); }
         .sidebar-body { padding: 15px; overflow-y: auto; flex: 1; font-size: 12px; }
         .info-item1 { 
@@ -128,17 +120,33 @@ z-index: 9999;}
         .close-btn { cursor: pointer; font-size: 22px; color: var(--secondary); border: none; background: none; line-height: 1; }
         .status-badge { display: inline-block; padding: 3px 8px; color: #fff; border-radius: 4px; font-size: 10px; font-weight: bold; }
         .filter-container { display: flex; gap:6px; position: absolute;
-    top: 10px;
-    left: 10px;
-    right: 10px;
+ right: 0;
+ left: 0;
+ align-items: center;
+   padding-bottom: 10px;
+   padding-right: 10px;
+    padding-top:10px ;
     z-index: 1000;
-    background: transparent;
+    background: white;
     border: none; }
-        .filter-chip { background: #fff; box-shadow: 1px 1px 20px 2px #000000b5; border: 1px solid #ccc; padding: 6px 12px; border-radius: 20px; font-size: 11px; font-weight: bold; cursor: pointer; transition: 0.2s; color: #555; display: inline-flex; align-items: center; gap: 4px; }
+    .filter-container1 { display: flex; gap:6px; 
+ 
+      align-items: center;
+    z-index: 1000;
+    background: white;
+    border: none; }
+        .filter-chip { background: #fff; height: 28px; border: 1px solid #ccc; padding: 6px 12px; border-radius: 5px; font-size: 11px; font-weight: bold; cursor: pointer; transition: 0.2s; color: #555; display: inline-flex; align-items: center; gap: 4px; }
          .filter-chip1 { background: #fff; border: 1px solid #ccc; padding: 6px 12px; border-radius: 20px; font-size: 11px; font-weight: bold; cursor: pointer; transition: 0.2s; color: #555; display: inline-flex; align-items: center; gap: 4px; }
         .filter-chip:hover { border-color: var(--secondary); background: #fffdf5; }
-        .filter-chip.active { background:#d4af37; color:  #000000; border-color: #000000; }
+        .filter-chip.active { background:#000000; color:  #ffffff; border-color: #000000; }
         .filter-chip span { color: inherit; font-size: 10px; opacity: 0.8; }
+
+ .filter-chip2 { background: #fff;  padding: 6px 12px;  font-size: 11px; font-weight: normal; cursor: pointer; transition: 0.2s; color: #555; display: inline-flex; align-items: center; gap: 0px; }
+        .filter-chip2:hover { border-color: var(--secondary); background: #fffdf5; }
+        .filter-chip2.active {    border-bottom-style: solid; border-color: #d4af37; }
+        .filter-chip2 span { color: inherit; font-size: 10px; opacity: 0.8; }
+
+
         .table-container { padding: 5px 10px; overflow-y: auto; flex: 1; }
         table { width: 100%; border-collapse: collapse; text-align: right; font-size: 11px; }
         th, td { padding: 10px 6px; border-bottom: 1px solid #eee; }
@@ -369,7 +377,9 @@ z-index: 9999;}
                         <th id="th-plot" onclick="sortTable('plotNum', this)">العقار</th>
                         <th id="th-region" onclick="sortTable('regionMain', this)">المنطقة</th>
                         <th id="th-area" onclick="sortTable('area', this)">المساحة</th>
+                       <th id="th-useit" onclick="sortTable('useit', this)">الاستعمال</th>
                         <th>الحالة</th>
+                        
                     </tr>
                 </thead>
                 <tbody id="lands-table-body">
@@ -379,11 +389,7 @@ z-index: 9999;}
     </div>
     <button id="toggle-panel-btn" class="toggle-panel-btn" onclick="toggleAdminPanel()">▶</button>
     <div class="map-container">
-         <div class="panel-header">
        
-            <img src="lib/kmls/img/logo.png" alt="الشعار" class="panel-logo" onerror="this.style.display='none'">
-            <span>الملكية للإستثمار</span>
-        </div>
         <div class="modal-bg">  
         <div id="advanced-settings-content" style=" position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 400px; max-width: 90%; min-height: 150px; padding: 15px; background: rgb(250, 250, 250); border: 2px solid var(--secondary); z-index: 10000; border-radius: 20px;">
             <h4 style="font-size: 15px; margin-bottom: 8px; font-weight: bold;">إدارة البيانات</h4>
@@ -400,7 +406,10 @@ z-index: 9999;}
         </div> 
         <div id="region-filter-bar" class="filter-container">
             <div class="filter-chip" onclick="toggleSection('add-land-content')" title="اضافة">+</div>
+                        <div id="usage-filter-bar" class="filter-container1">
+</div>
             </div>
+
         <div id="map"></div>
         <div id="info-sidebar" class="info-sidebar">
             <div class="sidebar-header">
@@ -415,6 +424,8 @@ z-index: 9999;}
     <script src="https://unpkg.com/leaflet-omnivore@0.3.4/leaflet-omnivore.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <script>
+        
+          let selectedUsageFilter = 'الكل';
         const googleSatellite = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', { maxZoom: 20 });
         const streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 20 });
         const labelLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', { maxZoom: 20, opacity: 0.9 });
@@ -427,17 +438,38 @@ z-index: 9999;}
         L.control.layers(baseMaps, null, { position: 'topleft' }).addTo(map);
         let localProperties = JSON.parse(localStorage.getItem('my_properties')) || [];
         let properties = []; 
-        let selectedRegionFilter = 'الكل'
+        let selectedRegionFilter = 'كافة المناطق'
         let mapLayersGroup = L.layerGroup().addTo(map);
         const allLandsLayers = [];
         let currentSortKey = '';
         let isSortAsc = true;
-        const customYellowPin = L.icon({
-            iconUrl: 'lib/kmls/img/yellow-pin.png', 
-            iconSize: [32, 32],      
-            iconAnchor: [16, 32],    
-            popupAnchor: [0, -32]    
-        });
+       const pinIcons = {
+    sakani: L.icon({
+        iconUrl: 'lib/kmls/img/yellow-pin.png',
+        iconSize: [32,32],
+        iconAnchor:[16,32]
+    }),
+    tgary: L.icon({
+        iconUrl: 'lib/kmls/img/yellow-pin.png',
+        iconSize: [32,32],
+        iconAnchor:[16,32]
+    }),
+    zrai: L.icon({
+        iconUrl: 'lib/kmls/img/yellow-pin.png',
+        iconSize: [32,32],
+        iconAnchor:[16,32]
+    }),
+    sakanitgary: L.icon({
+        iconUrl: 'lib/kmls/img/yellow-pin.png',
+        iconSize: [32,32],
+        iconAnchor:[16,32]
+    }),
+    investment: L.icon({
+        iconUrl: 'lib/kmls/img/yellow-pin.png',
+        iconSize: [32,32],
+        iconAnchor:[16,32]
+    })
+};
         scanKmlFolderAndLoad();
 function openInGoogleEarth(layer) {
     if (!layer || !layer.getBounds) {
@@ -510,7 +542,7 @@ function openInGoogleEarth(layer) {
                 localStorage.removeItem('my_properties'); 
                 localProperties = [];
                 properties = [];
-                selectedRegionFilter = 'الكل';
+                selectedRegionFilter = 'كافة المناطق';
                 mapLayersGroup.clearLayers();
                 allLandsLayers.length = 0;
                 resetForm();
@@ -547,6 +579,7 @@ function toggleSectionDirect(id) {
                 "الارتدادات": p.offsets,
                 "اسم المالك": p.ownerName,
                 "رقم المالك": p.ownerPhone,
+                "رابط الفيديو": p.video || '',
                 "حالة العرض": p.status
             }));
             const worksheet = XLSX.utils.json_to_sheet(formattedData);
@@ -597,6 +630,7 @@ async function importFromExcel() {
                 offsets: row["الارتدادات"] || '',
                 ownerName: row["اسم المالك"] || '',
                 ownerPhone: row["رقم المالك"] || '',
+                video: row["رابط الفيديو"] || '',
                 status: row["حالة العرض"] || 'ready'
             };
 
@@ -645,13 +679,35 @@ async function importFromExcel() {
             updateTable();
         }
         function renderFilterBar() {
+      
             const filterBar = document.getElementById('region-filter-bar');
-            const regionsList = ['الكل', 'صلالة', 'السعادة', 'الدهاريز', 'عوقد', 'صحلنوت', 'مرباط', 'مسقط', 'بركاء'];
+            const regionsList = ['كافة المناطق', 'صلالة', 'السعادة', 'الدهاريز', 'عوقد', 'صحلنوت', 'مرباط', 'مسقط', 'بركاء'];
+            const usageTypes = [
+    ['الكل','الكل'],
+    ['sakani','سكني'],
+    ['tgary','تجاري'],
+    ['zrai','زراعي'],
+    ['sakanitgary','سكني | تجاري'],
+    ['investment','عقار']
+];
+
+usageTypes.forEach(item=>{
+    const chip=document.createElement('div');
+    chip.className=`filter-chip ${selectedUsageFilter===item[0]?'active':''}`;
+    chip.innerHTML=item[1];
+
+    chip.onclick=()=>{
+        selectedUsageFilter=item[0];
+        updateUI();
+    };
+
+    filterBar.appendChild(chip);
+});
             filterBar.innerHTML = '';
             
             regionsList.forEach(reg => {
                 let count = 0;
-                if (reg === 'الكل') {
+                if (reg === 'كافة المناطق') {
                     count = properties.length;
                 } else {
                     count = properties.filter(p => p.regionMain === reg).length;
@@ -660,21 +716,45 @@ async function importFromExcel() {
                 chip.className = `filter-chip ${selectedRegionFilter === reg ? 'active' : ''}`;
                 chip.innerHTML = `${reg} <span>(${count})</span>`;
                 chip.addEventListener('click', () => {
-                    selectedRegionFilter = reg;
-                    updateUI(); 
-                });
+
+    selectedRegionFilter = reg;
+
+    const regionCenters = {
+        "صلالة":[17.0197,54.0897],
+        "السعادة":[17.0530,54.1530],
+        "الدهاريز":[17.0210,54.1240],
+        "عوقد":[17.0400,54.0300],
+        "صحلنوت":[17.0780,54.1550],
+        "مرباط":[16.9900,54.6900],
+        "مسقط":[23.5880,58.3829],
+        "بركاء":[23.6787,57.8860]
+    };
+
+    if(regionCenters[reg]){
+        map.flyTo(
+            regionCenters[reg],
+            15,
+            {
+                animate:true,
+                duration:1.5
+            }
+        );
+    }
+
+    updateUI();
+});
                 filterBar.appendChild(chip);
                 
             });
                 
                filterBar.insertAdjacentHTML(
     'beforeend',
-    '<div class="filter-chip" onclick="toggleSection(\'add-land-content\')" title="اضافة">+</div>'
+'<div style="align-content: center; padding-right: 20px;     padding-left: 20px;     color: #a5a5a5;">|</div><div id="usage-filter-bar" class="filter-container1"></div>'
         
 );
    filterBar.insertAdjacentHTML(
     'afterbegin',
-    '<div class="filter-chip" onclick="toggleSectionDirect(\'advanced-settings-content\')" title="ادارة">≡</div>'
+    '<div class="filter-chip" onclick="toggleSectionDirect(\'advanced-settings-content\')" title="ادارة">≡</div>  <div class="panel-header"><img src="lib/kmls/img/logo.png" alt="الشعار" class="panel-logo" onerror="this.style.display=(\'none\')"><span>الملكية للإستثمار</span> </div> <div style="align-content: center; padding-right: 20px;     padding-left: 20px;     color: #a5a5a5;">|</div>'
     
 );
         }
@@ -743,17 +823,27 @@ async function importFromExcel() {
         }
         document.getElementById('cancel-edit-btn').addEventListener('click', resetForm);
         function updateUI() {
-            renderFilterBar(); 
-            updateTable();
-            renderMapLayers();
+               renderFilterBar();
+    renderUsageFilterBar();
+    updateTable();
+    renderMapLayers();
         }
         function updateTable() {
             const tbody = document.getElementById('lands-table-body');
             tbody.innerHTML = '';
-            const filteredProperties = properties.filter(p => {
-                if (selectedRegionFilter === 'الكل') return true;
-                return p.regionMain === selectedRegionFilter;
-            });
+          const filteredProperties = properties.filter(p => {
+
+    const regionMatch =
+        selectedRegionFilter === 'كافة المناطق'
+        || p.regionMain === selectedRegionFilter;
+
+    const usageMatch =
+        selectedUsageFilter === 'الكل'
+        || p.regionType === selectedUsageFilter
+        || (selectedUsageFilter === 'investment' && p.type === 'investment');
+
+    return regionMatch && usageMatch;
+});
             filteredProperties.forEach(p => {
                 const tr = document.createElement('tr');
                 const statusLabels = { ready: 'معروض', sold: 'مباع', reserved: 'محجوز', expired: 'منتهي' };
@@ -761,7 +851,17 @@ async function importFromExcel() {
                     <td><b>${p.type === 'land' ? 'أرض' : 'عقار'} ${p.plotNum}</b></td>
                     <td>${p.regionMain} ${p.isScanned ? '(تلقائي)' : ''}</td>
                     <td>${p.area} م²</td>
-                    <td><span class="status-badge" style="background:${getBadgeColor(p.status)}">${statusLabels[p.status]}</span></td>
+                    <td>
+${
+p.regionType==='sakani' ? 'سكني' :
+p.regionType==='tgary' ? 'تجاري' :
+p.regionType==='zrai' ? 'زراعي' :
+p.regionType==='sakanitgary' ? 'سكني | تجاري' :
+'عقار'
+}
+</td>
+
+<td><span class="status-badge" style="background:${getBadgeColor(p.status)}">${statusLabels[p.status]}</span></td>
                 `;
                 tr.addEventListener('click', () => focusOnProperty(p.id));
                 tbody.appendChild(tr);
@@ -773,28 +873,45 @@ async function importFromExcel() {
             if(status === 'reserved') return '#555555';
             return '#999999';
         }
-        function renderMapLayers() {
-            mapLayersGroup.clearLayers();
-            allLandsLayers.length = 0;
-            properties.forEach(p => {
-                if (selectedRegionFilter !== 'الكل' && p.regionMain !== selectedRegionFilter) {
-                    return;
-                }
-                const generatedKmlUrl = `lib/kmls/${p.plotNum}_${p.area}.kml`;
-                const customLayer = omnivore.kml(generatedKmlUrl)
-                    .on('ready', function() {
-                        customLayer.eachLayer(layer => {
-                            if (layer instanceof L.Marker) {
-                                customLayer.removeLayer(layer);
-                                return;
-                            }
-                            applyLayerStylesAndEvents(layer, p, customLayer);
-                        });
-                    })
-                    .on('error', function() { createFallbackMarker(p); });
-                mapLayersGroup.addLayer(customLayer);
-            });
+       function renderMapLayers() {
+    mapLayersGroup.clearLayers();
+    allLandsLayers.length = 0;
+
+    properties.forEach(p => {
+
+        const regionMatch =
+            selectedRegionFilter === 'كافة المناطق' ||
+            p.regionMain === selectedRegionFilter;
+
+        const usageMatch =
+            selectedUsageFilter === 'الكل' ||
+            p.regionType === selectedUsageFilter ||
+            (selectedUsageFilter === 'investment' && p.type === 'investment');
+
+        if (!regionMatch || !usageMatch) {
+            return;
         }
+
+        const generatedKmlUrl = `lib/kmls/${p.plotNum}_${p.area}.kml`;
+
+        const customLayer = omnivore.kml(generatedKmlUrl)
+            .on('ready', function() {
+                customLayer.eachLayer(layer => {
+                    if (layer instanceof L.Marker) {
+                        customLayer.removeLayer(layer);
+                        return;
+                    }
+
+                    applyLayerStylesAndEvents(layer, p, customLayer);
+                });
+            })
+            .on('error', function() {
+                createFallbackMarker(p);
+            });
+
+        mapLayersGroup.addLayer(customLayer);
+    });
+}
         function applyLayerStylesAndEvents(layer, p, parentLayer) {
             const isSold = p.status === 'sold';
             if (layer instanceof L.Polygon || layer instanceof L.Polyline) {
@@ -809,7 +926,9 @@ async function importFromExcel() {
                 layer.customData = p;
                 allLandsLayers.push(layer);
                 const centerLatLng = layer.getBounds().getCenter();
-                const cleanPin = L.marker(centerLatLng, { icon: customYellowPin });
+                const cleanPin = L.marker(centerLatLng, {
+    icon: pinIcons[p.regionType] || pinIcons.sakani
+});
                 const openDetails = () => showPropertyDetails(p, layer);
                 layer.on('click', openDetails);
                 cleanPin.on('click', openDetails);
@@ -819,12 +938,17 @@ async function importFromExcel() {
         function createFallbackMarker(p) {
             const offset = (properties.indexOf(p) * 0.002);
             const fallbackLatLng = [17.0151 + (offset * 0.1), 54.0924 + offset];
-            const marker = L.marker(fallbackLatLng, { icon: customYellowPin });
+            const marker = L.marker(fallbackLatLng, {
+    icon: pinIcons[p.regionType] || pinIcons.sakani
+});
             marker.propertyId = p.id;
             marker.on('click', () => showPropertyDetails(p, null));
             mapLayersGroup.addLayer(marker);
         }
         function showPropertyDetails(p, layer) {
+            const videoButton = p.video
+? `<button class="btn1" onclick="window.open('${p.video}','_blank')">▶</button>`
+: '';
             const sideTitle = document.getElementById('side-title');
             const sideBody = document.getElementById('side-body');
             sideTitle.innerText = `${p.type === 'land' ? 'أرض فضاء' : 'عقار استثماري'} - رقم ${p.plotNum}`;
@@ -874,6 +998,7 @@ async function importFromExcel() {
                     </div>
                 </div>
                 <div class="btnsc">
+                    ${videoButton}
                     <button class="btn1" onclick="startEditProperty('${p.id}')">✎</button>
                     <button class="btn1" onclick="window.open('${googleMapsUrl}', '_blank')">⚑</button>
                         <button class="btn1" onclick="openInGoogleEarth(currentActiveLayer)">3D</button>
@@ -961,6 +1086,40 @@ window.currentActiveLayer = layer;
                 }
             }
         });
+
+        function renderUsageFilterBar() {
+
+    const bar = document.getElementById('usage-filter-bar');
+
+    const usages = [
+        ['الكل', 'الكل'],
+        ['sakani', 'سكني'],
+        ['tgary', 'تجاري'],
+        ['zrai', 'زراعي'],
+        ['sakanitgary', 'سكني | تجاري']
+    ];
+
+    bar.innerHTML = '';
+
+    usages.forEach(item => {
+
+  
+
+        const chip = document.createElement('div');
+
+        chip.className =
+            `filter-chip2 ${selectedUsageFilter === item[0] ? 'active' : ''}`;
+
+        chip.innerHTML = `${item[1]} `;
+
+        chip.onclick = () => {
+            selectedUsageFilter = item[0];
+            updateUI();
+        };
+
+        bar.appendChild(chip);
+    });
+}
     </script>
 </body>
 </html>
