@@ -81,7 +81,7 @@
 		<LineString>
 			<tessellate>1</tessellate>
 			<coordinates>
-				54.11445988842529,17.022269546805582,0 54.11417853858964,17.022236475963922,0 54.114184675914636,17.02173232972526,0 54.114517150904106,17.021803871492978,0 54.11445988842529,17.022269546805582,0 54.11445988842529,17.022269546805582,0 
+				54.072876162117716,17.003817193786762,0 54.0733583111963,17.003674417650643,0 54.07330814196171,17.004118860480677,0 54.073314066622146,17.004184501381307,0 54.07336932178684,17.004228097067443,0 54.07350949577741,17.00429061253448,0 54.07332502443092,17.005218650657756,0 54.073047560886906,17.005167614001003,0 54.072789097756264,17.00512588008113,0 54.07263320852629,17.00510232683284,0 54.072876162117716,17.003817193786762,0 54.072876162117716,17.003817193786762,0 
 			</coordinates>
 		</LineString>
 	</Placemark>
@@ -90,35 +90,77 @@
 	<styleUrl>#m_ylw-pushpin0</styleUrl>
 	<Point>
 		<gx:drawOrder>1</gx:drawOrder>
-		<coordinates>54.11445988842529,17.022269546805582,0 </coordinates>
+		<coordinates>54.072876162117716,17.003817193786762,0 </coordinates>
 	</Point>
 </Placemark><Placemark>
 	<name>2</name>
 	<styleUrl>#m_ylw-pushpin0</styleUrl>
 	<Point>
 		<gx:drawOrder>1</gx:drawOrder>
-		<coordinates>54.11417853858964,17.022236475963922,0 </coordinates>
+		<coordinates>54.0733583111963,17.003674417650643,0 </coordinates>
 	</Point>
 </Placemark><Placemark>
 	<name>3</name>
 	<styleUrl>#m_ylw-pushpin0</styleUrl>
 	<Point>
 		<gx:drawOrder>1</gx:drawOrder>
-		<coordinates>54.114184675914636,17.02173232972526,0 </coordinates>
+		<coordinates>54.07330814196171,17.004118860480677,0 </coordinates>
 	</Point>
 </Placemark><Placemark>
 	<name>4</name>
 	<styleUrl>#m_ylw-pushpin0</styleUrl>
 	<Point>
 		<gx:drawOrder>1</gx:drawOrder>
-		<coordinates>54.114517150904106,17.021803871492978,0 </coordinates>
+		<coordinates>54.073314066622146,17.004184501381307,0 </coordinates>
 	</Point>
 </Placemark><Placemark>
 	<name>5</name>
 	<styleUrl>#m_ylw-pushpin0</styleUrl>
 	<Point>
 		<gx:drawOrder>1</gx:drawOrder>
-		<coordinates>54.11445988842529,17.022269546805582,0 </coordinates>
+		<coordinates>54.07336932178684,17.004228097067443,0 </coordinates>
+	</Point>
+</Placemark><Placemark>
+	<name>6</name>
+	<styleUrl>#m_ylw-pushpin0</styleUrl>
+	<Point>
+		<gx:drawOrder>1</gx:drawOrder>
+		<coordinates>54.07350949577741,17.00429061253448,0 </coordinates>
+	</Point>
+</Placemark><Placemark>
+	<name>7</name>
+	<styleUrl>#m_ylw-pushpin0</styleUrl>
+	<Point>
+		<gx:drawOrder>1</gx:drawOrder>
+		<coordinates>54.07332502443092,17.005218650657756,0 </coordinates>
+	</Point>
+</Placemark><Placemark>
+	<name>8</name>
+	<styleUrl>#m_ylw-pushpin0</styleUrl>
+	<Point>
+		<gx:drawOrder>1</gx:drawOrder>
+		<coordinates>54.073047560886906,17.005167614001003,0 </coordinates>
+	</Point>
+</Placemark><Placemark>
+	<name>9</name>
+	<styleUrl>#m_ylw-pushpin0</styleUrl>
+	<Point>
+		<gx:drawOrder>1</gx:drawOrder>
+		<coordinates>54.072789097756264,17.00512588008113,0 </coordinates>
+	</Point>
+</Placemark><Placemark>
+	<name>10</name>
+	<styleUrl>#m_ylw-pushpin0</styleUrl>
+	<Point>
+		<gx:drawOrder>1</gx:drawOrder>
+		<coordinates>54.07263320852629,17.00510232683284,0 </coordinates>
+	</Point>
+</Placemark><Placemark>
+	<name>11</name>
+	<styleUrl>#m_ylw-pushpin0</styleUrl>
+	<Point>
+		<gx:drawOrder>1</gx:drawOrder>
+		<coordinates>54.072876162117716,17.003817193786762,0 </coordinates>
 	</Point>
 </Placemark>
 </Document>
