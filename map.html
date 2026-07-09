@@ -12,15 +12,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #111111;   
-            --secondary: #d4af37; 
-            --light: #ffffff;     
+            --primary: #111111;
+            --secondary: #d4af37;
+            --light: #ffffff;
             --gray-bg: #fdfdfd;
             --border-color: #e5e5e5;
         }
         * { box-sizing: border-box; font-family: 'Alexandria', sans-serif; margin: 0; padding: 0; }
         body { display: flex; height: 100vh; background: var(--light); overflow: hidden; color: var(--primary); position: relative; }
-        .leaflet-control-container .leaflet-top { top: 40px; }
+        .leaflet-control-container .leaflet-top { display: none; }
         .admin-panel { width: 400px; background: #fffffff1; box-shadow: 2px 0 10px rgba(0,0,0,0.05); display: flex; flex-direction: column; z-index: 99999; overflow-y: auto; border-left: 1px solid var(--border-color); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative;     top: 70px;   }
         .admin-panel.hidden { transform: translateX(400px); width: 0; min-width: 0; }
         .toggle-panel-btn { position: absolute; right: 400px; top: 50%; transform: translateY(-50%); background: white; border: 1px solid var(--secondary); border-right: none; color: var(--secondary); padding: 15px 6px; cursor: pointer; z-index: 2000; border-radius: 4px 0 0 4px; font-size: 11px; transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1); font-weight: bold; }
@@ -36,12 +36,11 @@
         .panel-logo { max-height: 50px; width: auto; object-fit: contain; border-radius: 50px; }
         .settings-icon-btn { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); font-size: 20px; cursor: pointer; color: var(--secondary); user-select: none; transition: 0.2s; }
         .settings-icon-btn1 { position: absolute; left: 35px; top: 50%; transform: translateY(-50%); font-size: 20px; cursor: pointer; color: var(--secondary); user-select: none; transition: 0.2s; }
-      
         .btnsc {
           display: flex;
-          justify-content: center; 
-          gap: 12px;               
-          width: 100%;             
+          justify-content: center;
+          gap: 12px;
+          width: 100%;
           padding-bottom: 10px;
           box-sizing: border-box;
         }
@@ -49,25 +48,20 @@
         position: fixed;
     inset: 0;
     background: rgba(0,0,0,0.6);
-
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease;
-
     z-index: 9999;
 }
-
 .modal-bg.show {
     opacity: 1;
     visibility: visible;
 }
-
 #advanced-settings-content {
     opacity: 0;
     visibility: hidden;
     transition: .3s;
 }
-
 #advanced-settings-content.show {
     opacity: 1;
     visibility: visible;
@@ -97,7 +91,6 @@
         input:focus, select:focus { border-color: var(--secondary); outline: none; }
         .btn { background: #d4af37; color: var(--primary); border: 1px solid var(--secondary); padding: 11px; width: 100%; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 12px; margin-top: 10px; transition: 0.2s; text-align: center; }
         .btn1 { background: white; color: var(--primary); border: 0px solid var(--secondary); padding: 11px; width: 100%; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 18px; margin-top: 10px; transition: 0.2s; }
-        
         .btn:hover { background: var(--primary); color: var(--secondary); }
         .btn-secondary { background: #fff; color: #555; border: 1px solid #ccc; }
         .btn-secondary:hover { background: #eee; color: #111; }
@@ -108,46 +101,83 @@
         .sidebar-header { background: #ffffffeb; color: var(--light); padding: 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--secondary); }
         .sidebar-header h2 { font-size: 14px; color: var(--secondary); }
         .sidebar-body { padding: 15px; overflow-y: auto; flex: 1; font-size: 12px; }
-        .info-item1 { 
-            height: 50px;            
-            overflow-y: auto;        
-            margin-bottom: 12px; 
-            border-bottom: 1px solid #f5f5f5; 
-            padding-bottom: 8px; 
+        .info-item1 {
+            height: 50px;
+            overflow-y: auto;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #f5f5f5;
+            padding-bottom: 8px;
         }
         .info-item { margin-bottom: 12px; border-bottom: 1px solid #f5f5f5; padding-bottom: 8px; }
         .info-item b { color: var(--primary); display: block; font-size: 11px; margin-bottom: 3px; position: relative; padding-right: 8px; }
         .info-item b::before { content: ''; position: absolute; right: 0; top: 4px; width: 3px; height: 8px; background: var(--secondary); }
         .close-btn { cursor: pointer; font-size: 22px; color: var(--secondary); border: none; background: none; line-height: 1; }
         .status-badge { display: inline-block; padding: 3px 8px; color: #fff; border-radius: 4px; font-size: 10px; font-weight: bold; }
-        .filter-container { display: flex; gap:6px; position: absolute;
- right: 0;
- left: 0;
- align-items: center;
-   padding-bottom: 10px;
-   padding-right: 10px;
-    padding-top:10px ;
+        .filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    padding: 10px;
     z-index: 1000;
-    background: white;
-    border: none; }
-    .filter-container1 { display: flex; gap:6px; 
- 
-      align-items: center;
-    z-index: 1000;
-    background: white;
-    border: none; }
-        .filter-chip { background: #fff; height: 28px; border: 1px solid #ccc; padding: 6px 12px; border-radius: 5px; font-size: 11px; font-weight: bold; cursor: pointer; transition: 0.2s; color: #555; display: inline-flex; align-items: center; gap: 4px; }
+    background: #fff;
+    border: none;
+    box-sizing: border-box;
+}
+.filter-container1 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+.panel-header {
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+.panel-logo {
+    height: 32px;
+    width: auto;
+}
+.filter-chip,
+.filter-chip2 {
+    white-space: nowrap;
+}
+@media (max-width: 768px) {
+    .filter-container {
+        gap: 4px;
+        padding: 8px;
+    }
+    .panel-header span {
+        font-size: 13px;
+    }
+    .panel-logo {
+        height: 24px;
+    }
+    .filter-chip,
+    .filter-chip2 {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+    #usage-filter-bar {
+        width: 100%;
+        margin-top: 6px;
+    }
+}
+.filter-chip { background: #fff; height: 28px; border: 1px solid #ccc; padding: 6px 12px; border-radius: 5px; font-size: 11px; font-weight: bold; cursor: pointer; transition: 0.2s; color: #555; display: inline-flex; align-items: center; gap: 4px; }
          .filter-chip1 { background: #fff; border: 1px solid #ccc; padding: 6px 12px; border-radius: 20px; font-size: 11px; font-weight: bold; cursor: pointer; transition: 0.2s; color: #555; display: inline-flex; align-items: center; gap: 4px; }
         .filter-chip:hover { border-color: var(--secondary); background: #fffdf5; }
         .filter-chip.active { background:#000000; color:  #ffffff; border-color: #000000; }
         .filter-chip span { color: inherit; font-size: 10px; opacity: 0.8; }
-
  .filter-chip2 { background: #fff;  padding: 6px 12px;  font-size: 11px; font-weight: normal; cursor: pointer; transition: 0.2s; color: #555; display: inline-flex; align-items: center; gap: 0px; }
         .filter-chip2:hover { border-color: var(--secondary); background: #fffdf5; }
         .filter-chip2.active {    border-bottom-style: solid; border-color: #d4af37; }
         .filter-chip2 span { color: inherit; font-size: 10px; opacity: 0.8; }
-
-
         .table-container { padding: 5px 10px; overflow-y: auto; flex: 1; }
         table { width: 100%; border-collapse: collapse; text-align: right; font-size: 11px; }
         th, td { padding: 10px 6px; border-bottom: 1px solid #eee; }
@@ -184,9 +214,9 @@
         right: 0 !important;
         top: 0 !important;
         height: 100% !important;
-        width: 300px !important; 
+        width: 300px !important;
         max-width: 80vw !important;
-        z-index: 9999 !important; 
+        z-index: 9999 !important;
         background: var(--light) !important;
         box-shadow: -5px 0 15px rgba(0,0,0,0.15) !important;
         transform: translateX(0) !important;
@@ -194,7 +224,7 @@
     }
     .admin-panel.hidden {
         transform: translateX(100%) !important;
-        width: 300px !important; 
+        width: 300px !important;
     }
     .toggle-panel-btn {
         position: fixed !important;
@@ -211,12 +241,12 @@
     }
     .info-sidebar {
         position: fixed !important;
-        left: -320px !important; 
+        left: -320px !important;
         top: 50px ;
         width: 300px !important;
         max-width: 85vw !important;
         height: 100% !important;
-        z-index: 10005 !important; 
+        z-index: 10005 !important;
         box-shadow: 5px 0 15px rgba(0,0,0,0.15) !important;
         transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
@@ -234,7 +264,7 @@
     th, td {
         padding: 8px 4px !important;
         font-size: 10px !important;
-        white-space: nowrap !important; 
+        white-space: nowrap !important;
     }
     .btnsc {
         gap: 6px !important;
@@ -251,7 +281,35 @@
         font-size: 10px !important;
     }
 }
-    </style>
+   .region-bubble{
+    z-index: 9999999;
+    border-radius:50%;
+    background:rgba(17,17,17,.92);
+    border:2px solid #d4af37;
+    color:#fff;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    backdrop-filter:blur(8px);
+    transition:
+    opacity .3s ease,
+    transform .2s ease;
+}
+.region-bubble:hover{
+    transform:scale(1.08);
+}
+.region-bubble .name{
+    font-size:12px;
+    font-weight:bold;
+}
+.region-bubble .count{
+    font-size:20px;
+    font-weight:700;
+}
+
+   </style>
 </head>
 <body>
       <div id="add-land-content" class="collapsible-content">
@@ -272,6 +330,7 @@
                         <label>الاستعمال</label>
                         <select id="region-type">
                             <option value="sakani">سكني</option>
+                             <option value="sinay">صناعي</option>
                             <option value="sakanitgary">سكني | تجاري</option>
                             <option value="tgary">تجاري</option>
                             <option value="zrai">زراعي</option>
@@ -364,14 +423,8 @@
                 <button type="submit" id="submit-btn" class="btn">حفظ</button>
                 <button type="button" id="cancel-edit-btn" class="btn btn-secondary" style="display:none; margin-top:5px;">إلغاء</button>
             </form>
-      
         </div>
        <div id="admin-panel" class="admin-panel hidden">
-
-       
-      
-         
-          
         <div class="table-container">
             <table>
                 <thead>
@@ -381,7 +434,6 @@
                         <th id="th-area" onclick="sortTable('area', this)">المساحة</th>
                        <th id="th-useit" onclick="sortTable('useit', this)">الاستعمال</th>
                         <th>الحالة</th>
-                        
                     </tr>
                 </thead>
                 <tbody id="lands-table-body">
@@ -390,29 +442,31 @@
         </div>
     </div>
         <button id="toggle-panel-btn" class="toggle-panel-btn" onclick="toggleAdminPanel()">▶</button>
-     <div id="region-filter-bar" class="filter-container">
-            <div class="filter-chip" onclick="toggleSection('add-land-content')" title="اضافة">+</div>
+        <div id="region-filter-bar" class="filter-container">
+            <div class="panel-header">
+                <div class="filter-chip" onclick="toggleSectionDirect('advanced-settings-content')" title="ادارة">≡</div>
+    <img src="lib/kmls/img/logo.png"
+         class="panel-logo">
+    <span>الملكية للإستثمار</span>
+</div>
                         <div id="usage-filter-bar" class="filter-container1">
 </div>
             </div>
-
+    
     <div class="map-container">
-        <div class="modal-bg">  
+        <div class="modal-bg">
         <div id="advanced-settings-content" style=" position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 400px; max-width: 90%; min-height: 150px; padding: 15px; background: rgb(250, 250, 250); border: 2px solid var(--secondary); z-index: 10000; border-radius: 20px;">
             <h4 style="font-size: 15px; margin-bottom: 8px; font-weight: bold;">إدارة البيانات</h4>
             <div style="font-size: 22px; color:var(--secondary); cursor: pointer;position: absolute;left: 20px; top:10px;" onclick="toggleSectionDirect('advanced-settings-content')" title="اغلاق">x</div>
             <br>
-           
             <div style="display:flex; gap:8px;">
+                   <div class="filter-chip1" style="flex:1; margin-top:0;" onclick="toggleSection('add-land-content')" title="اضافة">اضافة</div>
                 <button type="button" class="filter-chip1" style="flex:1; margin-top:0;" onclick="exportToExcel()">تصدير</button>
-               
                 <button type="button" class="filter-chip1" style="flex:1; margin-top:0;" onclick="importFromExcel()">استيراد</button>
             </div>
             <button type="button" class="filter-chip1" style="width:100%; margin-top:8px;" onclick="clearAllDataSystem()">إعادة تعيين البيانات</button>
         </div>
-        </div> 
-       
-
+        </div>
         <div id="map"></div>
         <div id="info-sidebar" class="info-sidebar">
             <div class="sidebar-header">
@@ -427,7 +481,6 @@
     <script src="https://unpkg.com/leaflet-omnivore@0.3.4/leaflet-omnivore.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <script>
-        
           let selectedUsageFilter = 'الكل';
         const googleSatellite = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', { maxZoom: 20 });
         const streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 20 });
@@ -437,13 +490,28 @@
             zoom: 13,
             layers: [googleSatellite, labelLayer]
         });
+        map.createPane('propertyPinsPane');
+map.getPane('propertyPinsPane').style.zIndex = 400;
+map.createPane('regionBubblePane');
+map.getPane('regionBubblePane').style.zIndex = 700;
         const baseMaps = { "قمر صناعي (جوجل)": L.layerGroup([googleSatellite, labelLayer]), "خريطة الشوارع": streetLayer };
         L.control.layers(baseMaps, null, { position: 'topleft' }).addTo(map);
         let localProperties = JSON.parse(localStorage.getItem('my_properties')) || [];
-        let properties = []; 
+        let properties = [];
         let selectedRegionFilter = 'كافة المناطق'
         let mapLayersGroup = L.layerGroup().addTo(map);
         const allLandsLayers = [];
+        const regionCenters = {
+    "صلالة":[17.0197,54.0897],
+    "السعادة":[17.0530,54.1530],
+    "الدهاريز":[17.027819814048563,54.16463803424357],
+    "عوقد":[17.0400,54.0300],
+    "صحلنوت":[17.08830254395776,54.19122524300502],
+    "مرباط":[16.9900,54.6900],
+    "مسقط":[23.5880,58.3829],
+    "بركاء":[23.6787,57.8860]
+};
+let regionBubbles = [];
         let currentSortKey = '';
         let isSortAsc = true;
        const pinIcons = {
@@ -494,7 +562,7 @@ function openInGoogleEarth(layer) {
             } else {
                 btn.innerText = '▶';
             }
-            setTimeout(() => { map.invalidateSize(); }, 300); 
+            setTimeout(() => { map.invalidateSize(); }, 300);
         }
         async function scanKmlFolderAndLoad() {
             try {
@@ -519,7 +587,7 @@ function openInGoogleEarth(layer) {
                                 type: 'land',
                                 plotNum: plotNum,
                                 square: 'أ',
-                                regionMain: 'صلالة', 
+                                regionMain: 'صلالة',
                                 regionType: 'sakani',
                                 regionSub: 'الجديدة',
                                 area: area,
@@ -529,7 +597,7 @@ function openInGoogleEarth(layer) {
                                 ownerName: '',
                                 ownerPhone: '',
                                 status: 'ready',
-                                isScanned: true 
+                                isScanned: true
                             });
                         }
                     }
@@ -542,7 +610,7 @@ function openInGoogleEarth(layer) {
         }
         function clearAllDataSystem() {
             if (confirm("يرجى التأكيد او الالغاء")) {
-                localStorage.removeItem('my_properties'); 
+                localStorage.removeItem('my_properties');
                 localProperties = [];
                 properties = [];
                 selectedRegionFilter = 'كافة المناطق';
@@ -551,7 +619,6 @@ function openInGoogleEarth(layer) {
                 resetForm();
                 toggleSidebar(false);
              document.querySelector('.modal-bg').classList.remove('show');
-                
                 scanKmlFolderAndLoad();
                 alert("تم اعادة تعيين البيانات بنجاح");
             }
@@ -559,11 +626,9 @@ function openInGoogleEarth(layer) {
 function toggleSectionDirect(id) {
     const el = document.getElementById(id);
     const bg = document.querySelector('.modal-bg');
-
     el.classList.toggle('show');
     bg.classList.toggle('show');
 }
-
         function exportToExcel() {
             if (localProperties.length === 0) {
                 alert("لا توجد بيانات مضافة يدوياً لتصديرها حالياً!");
@@ -590,37 +655,29 @@ function toggleSectionDirect(id) {
             XLSX.utils.book_append_sheet(workbook, worksheet, "العقارات");
             XLSX.writeFile(workbook, "دليل_العقارات.xlsx");
         }
-       
 async function importFromExcel() {
     const token = prompt("الرجاء إدخال رمز المرور:");
     if (!token) return;
-
     const baseId = "1wkuQIBO8FFFvDmD79sA0-68jrrHw";
     const fullSheetId = baseId + token.trim();
     const exportUrl = `https://docs.google.com/spreadsheets/d/${fullSheetId}/export?format=xlsx`;
-
     try {
         const response = await fetch(exportUrl);
         if (!response.ok) {
             throw new Error("رابط غير صحيح أو ملف محمي");
         }
-        
         const arrayBuffer = await response.arrayBuffer();
         const data = new Uint8Array(arrayBuffer);
         const workbook = XLSX.read(data, { type: 'array' });
         const worksheet = workbook.Sheets[workbook.SheetNames[0]];
         const excelRows = XLSX.utils.sheet_to_json(worksheet);
-        
         let importedCount = 0;
-
         excelRows.forEach(row => {
             const plotNum = String(row["رقم القطعة / العقار"] || "").trim();
             const area = String(row["المساحة (م²)"] || "").trim();
-
-            if (!plotNum || !area) return; 
-
+            if (!plotNum || !area) return;
             const propData = {
-                id: Date.now() + Math.floor(Math.random() * 1000), 
+                id: Date.now() + Math.floor(Math.random() * 1000),
                 type: row["نوع العقار"] === 'عقار استثماري' ? 'investment' : 'land',
                 regionType: row["الاستعمال"] || 'sakani',
                 plotNum: plotNum,
@@ -636,14 +693,12 @@ async function importFromExcel() {
                 video: row["رابط الفيديو"] || '',
                 status: row["حالة العرض"] || 'ready'
             };
-
             const isDuplicate = localProperties.some(lp => lp.plotNum === propData.plotNum && lp.area === propData.area);
             if (!isDuplicate) {
                 localProperties.push(propData);
                 importedCount++;
             }
         });
-
         if (importedCount > 0) {
             localStorage.setItem('my_properties', JSON.stringify(localProperties));
             alert("تم استراد البيانات!");
@@ -651,16 +706,14 @@ async function importFromExcel() {
         } else {
             alert("لم يتم استيراد بيانات جديدة؛ قد تكون العناصر مكررة بالفعل.");
         }
-
     } catch (error) {
         console.error(error);
         alert("خطأ في كلمة السر! تعذر الوصول إلى الملف.");
     }
 }
-        
         function sortTable(key, thElement) {
             if (currentSortKey === key) {
-                isSortAsc = !isSortAsc; 
+                isSortAsc = !isSortAsc;
             } else {
                 currentSortKey = key;
                 isSortAsc = true;
@@ -675,39 +728,35 @@ async function importFromExcel() {
                 if (key === 'area') {
                     return isSortAsc ? parseFloat(valA) - parseFloat(valB) : parseFloat(valB) - parseFloat(valA);
                 }
-                return isSortAsc 
-                    ? String(valA).localeCompare(String(valB), 'ar', {numeric: true}) 
+                return isSortAsc
+                    ? String(valA).localeCompare(String(valB), 'ar', {numeric: true})
                     : String(valB).localeCompare(String(valA), 'ar', {numeric: true});
             });
             updateTable();
         }
         function renderFilterBar() {
-      
             const filterBar = document.getElementById('region-filter-bar');
             const regionsList = ['كافة المناطق', 'صلالة', 'السعادة', 'الدهاريز', 'عوقد', 'صحلنوت', 'مرباط', 'مسقط', 'بركاء'];
             const usageTypes = [
     ['الكل','الكل'],
     ['sakani','سكني'],
+    ['sinay','صناعي'],
     ['tgary','تجاري'],
     ['zrai','زراعي'],
     ['sakanitgary','سكني | تجاري'],
     ['investment','عقار']
 ];
-
 usageTypes.forEach(item=>{
     const chip=document.createElement('div');
     chip.className=`filter-chip ${selectedUsageFilter===item[0]?'active':''}`;
     chip.innerHTML=item[1];
-
     chip.onclick=()=>{
         selectedUsageFilter=item[0];
         updateUI();
     };
-
     filterBar.appendChild(chip);
 });
             filterBar.innerHTML = '';
-            
             regionsList.forEach(reg => {
                 let count = 0;
                 if (reg === 'كافة المناطق') {
@@ -719,9 +768,7 @@ usageTypes.forEach(item=>{
                 chip.className = `filter-chip ${selectedRegionFilter === reg ? 'active' : ''}`;
                 chip.innerHTML = `${reg} <span>(${count})</span>`;
                 chip.addEventListener('click', () => {
-
     selectedRegionFilter = reg;
-
     const regionCenters = {
         "صلالة":[17.0197,54.0897],
         "السعادة":[17.0530,54.1530],
@@ -732,7 +779,6 @@ usageTypes.forEach(item=>{
         "مسقط":[23.5880,58.3829],
         "بركاء":[23.6787,57.8860]
     };
-
     if(regionCenters[reg]){
         map.flyTo(
             regionCenters[reg],
@@ -745,7 +791,7 @@ usageTypes.forEach(item=>{
     }
     else {
          map.flyTo(
-        [17.0197, 54.0897], 
+        [17.0197, 54.0897],
         13,
             {
                 animate:true,
@@ -753,46 +799,33 @@ usageTypes.forEach(item=>{
             }
         );
     }
-
-  
-
     updateUI();
 });
                 filterBar.appendChild(chip);
-                
             });
-                
                filterBar.insertAdjacentHTML(
     'beforeend',
 '<div style="align-content: center; padding-right: 20px;     padding-left: 20px;     color: #a5a5a5;">|</div><div id="usage-filter-bar" class="filter-container1"></div>'
-        
 );
    filterBar.insertAdjacentHTML(
     'afterbegin',
     '<div class="filter-chip" onclick="toggleSectionDirect(\'advanced-settings-content\')" title="ادارة">≡</div>  <div class="panel-header"><img src="lib/kmls/img/logo.png" alt="الشعار" class="panel-logo" onerror="this.style.display=(\'none\')"><span>الملكية للإستثمار</span> </div> <div style="align-content: center; padding-right: 20px;     padding-left: 20px;     color: #a5a5a5;">|</div>'
-    
 );
         }
- 
       function toggleSection(id) {
     const el = document.getElementById(id);
-
     if (!el) {
         console.error('Element not found:', id);
         return;
     }
-
     const header = el.previousElementSibling;
-
     if (el.classList.contains('active')) {
         el.classList.remove('active');
-
         if (header) {
             header.classList.remove('active');
         }
     } else {
         el.classList.add('active');
-
         if (header) {
             header.classList.add('active');
         }
@@ -838,25 +871,22 @@ usageTypes.forEach(item=>{
         }
         document.getElementById('cancel-edit-btn').addEventListener('click', resetForm);
         function updateUI() {
-               renderFilterBar();
-    renderUsageFilterBar();
+           renderUsageFilterBar();
     updateTable();
     renderMapLayers();
+    renderRegionBubbles();
         }
         function updateTable() {
             const tbody = document.getElementById('lands-table-body');
             tbody.innerHTML = '';
           const filteredProperties = properties.filter(p => {
-
     const regionMatch =
         selectedRegionFilter === 'كافة المناطق'
         || p.regionMain === selectedRegionFilter;
-
     const usageMatch =
         selectedUsageFilter === 'الكل'
         || p.regionType === selectedUsageFilter
         || (selectedUsageFilter === 'investment' && p.type === 'investment');
-
     return regionMatch && usageMatch;
 });
             filteredProperties.forEach(p => {
@@ -869,13 +899,13 @@ usageTypes.forEach(item=>{
                     <td>
 ${
 p.regionType==='sakani' ? 'سكني' :
+p.regionType==='sinay' ? 'صناعي' :
 p.regionType==='tgary' ? 'تجاري' :
 p.regionType==='zrai' ? 'زراعي' :
 p.regionType==='sakanitgary' ? 'سكني | تجاري' :
 'عقار'
 }
 </td>
-
 <td><span class="status-badge" style="background:${getBadgeColor(p.status)}">${statusLabels[p.status]}</span></td>
                 `;
                 tr.addEventListener('click', () => focusOnProperty(p.id));
@@ -883,32 +913,26 @@ p.regionType==='sakanitgary' ? 'سكني | تجاري' :
             });
         }
         function getBadgeColor(status) {
-            if(status === 'ready') return '#d4af37'; 
-            if(status === 'sold') return '#aa1e1e';  
+            if(status === 'ready') return '#d4af37';
+            if(status === 'sold') return '#aa1e1e';
             if(status === 'reserved') return '#555555';
             return '#999999';
         }
        function renderMapLayers() {
     mapLayersGroup.clearLayers();
     allLandsLayers.length = 0;
-
     properties.forEach(p => {
-
         const regionMatch =
             selectedRegionFilter === 'كافة المناطق' ||
             p.regionMain === selectedRegionFilter;
-
         const usageMatch =
             selectedUsageFilter === 'الكل' ||
             p.regionType === selectedUsageFilter ||
             (selectedUsageFilter === 'investment' && p.type === 'investment');
-
         if (!regionMatch || !usageMatch) {
             return;
         }
-
         const generatedKmlUrl = `lib/kmls/${p.plotNum}_${p.area}.kml`;
-
         const customLayer = omnivore.kml(generatedKmlUrl)
             .on('ready', function() {
                 customLayer.eachLayer(layer => {
@@ -916,14 +940,12 @@ p.regionType==='sakanitgary' ? 'سكني | تجاري' :
                         customLayer.removeLayer(layer);
                         return;
                     }
-
                     applyLayerStylesAndEvents(layer, p, customLayer);
                 });
             })
             .on('error', function() {
                 createFallbackMarker(p);
             });
-
         mapLayersGroup.addLayer(customLayer);
     });
 }
@@ -934,15 +956,16 @@ p.regionType==='sakanitgary' ? 'سكني | تجاري' :
                     color: isSold ? '#aa1e1e' : '#d4af37',
                     weight: 3,
                     fillColor: isSold ? '#aa1e1e' : '#111111',
-                    fillOpacity: 0.45, 
-                    fill: true 
+                    fillOpacity: 0.45,
+                    fill: true
                 });
                 layer.propertyId = p.id;
                 layer.customData = p;
                 allLandsLayers.push(layer);
                 const centerLatLng = layer.getBounds().getCenter();
-                const cleanPin = L.marker(centerLatLng, {
-    icon: pinIcons[p.regionType] || pinIcons.sakani
+               const cleanPin = L.marker(centerLatLng, {
+    icon: pinIcons[p.regionType] || pinIcons.sakani,
+    pane: 'propertyPinsPane'
 });
                 const openDetails = () => showPropertyDetails(p, layer);
                 layer.on('click', openDetails);
@@ -988,7 +1011,6 @@ p.regionType==='sakanitgary' ? 'سكني | تجاري' :
             const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
             const autoCrokyUrl = `lib/kmls/img/${p.plotNum}.jpg`;
             sideBody.innerHTML = `
-               
             <div class="info-item"><b>المنطقة والمربع:</b> ${p.regionMain} - ${p.regionSub} | مربع (${p.square})</div>
                 <div class="info-item"><b>المساحة الكلية:</b> ${p.area} م²</div>
                 <div class="info-item"><b>الاستعمال:</b> ${p.regionType === 'sakani' ? 'سكني' : p.regionType === 'sakanitgary' ? 'سكني | تجاري' : p.regionType === 'tgary' ? 'تجاري' : 'زراعي'}</div>
@@ -1014,9 +1036,7 @@ p.regionType==='sakanitgary' ? 'سكني | تجاري' :
                         </div>
                     </div>
                 </div>
-                 
                 <div class="btnsc">
-                 
                     <button class="btn1" onclick="startEditProperty('${p.id}')">✎</button>
                     <button class="btn1" onclick="window.open('${googleMapsUrl}', '_blank')">⚑</button>
                         <button class="btn1" onclick="openInGoogleEarth(currentActiveLayer)">3D</button>
@@ -1101,6 +1121,18 @@ window.currentActiveLayer = layer;
                 showPropertyDetails(p, null);
             }
         }
+        map.on('zoomend', function () {
+    const zoom = map.getZoom();
+    if (
+        zoom <= 14 &&
+        selectedRegionFilter !== 'كافة المناطق'
+    ) {
+        selectedRegionFilter = 'كافة المناطق';
+        updateUI();
+    }
+    updateBubbleOpacity();
+});
+        map.on('zoomend', updateBubbleOpacity);
         map.on('click', function(e) {
             for (let i = 0; i < allLandsLayers.length; i++) {
                 const layer = allLandsLayers[i];
@@ -1110,40 +1142,113 @@ window.currentActiveLayer = layer;
                 }
             }
         });
-
         function renderUsageFilterBar() {
-
     const bar = document.getElementById('usage-filter-bar');
-
     const usages = [
         ['الكل', 'الكل'],
         ['sakani', 'سكني'],
+         ['sinay', 'صناعي'],
         ['tgary', 'تجاري'],
         ['zrai', 'زراعي'],
         ['sakanitgary', 'سكني | تجاري']
     ];
-
     bar.innerHTML = '';
-
     usages.forEach(item => {
-
-  
-
         const chip = document.createElement('div');
-
         chip.className =
             `filter-chip2 ${selectedUsageFilter === item[0] ? 'active' : ''}`;
-
         chip.innerHTML = `${item[1]} `;
-
         chip.onclick = () => {
             selectedUsageFilter = item[0];
             updateUI();
         };
-
         bar.appendChild(chip);
     });
 }
+function updateBubbleOpacity(){
+    const zoom = map.getZoom();
+    let opacity = 1;
+    if(zoom >= 17){
+        opacity = 0;
+    }
+    else if(zoom >= 15){
+        opacity = 0.15;
+    }
+    else if(zoom >= 14){
+        opacity = 0.35;
+    }
+    else if(zoom >= 13){
+        opacity = 0.9;
+    }
+    else{
+        opacity = 1;
+    }
+    document
+        .querySelectorAll('.region-bubble')
+        .forEach(el=>{
+            el.style.opacity = opacity;
+        });
+}
+function renderRegionBubbles(){
+    regionBubbles.forEach(m=>{
+        map.removeLayer(m);
+    });
+    regionBubbles=[];
+    Object.keys(regionCenters).forEach(region=>{
+        const count =
+            properties.filter(
+                p=>p.regionMain===region
+            ).length;
+        if(count===0) return;
+        const size =
+            Math.max(
+                70,
+                Math.min(
+                    120,
+                    70 + count
+                )
+            );
+        const html=`
+            <div class="region-bubble"
+                 style="
+                    width:${size}px;
+                    height:${size}px;
+                 ">
+                <div class="name">${region}</div>
+                <div class="count">${count}</div>
+            </div>
+        `;
+        const marker=L.marker(
+            regionCenters[region],
+            {
+                  pane:'regionBubblePane',
+        interactive:true,
+        icon:L.divIcon({
+                    html:html,
+                    className:'',
+                    iconSize:[size,size],
+                    iconAnchor:[size/2,size/2]
+                })
+            }
+        );
+        marker.on('click',()=>{
+            selectedRegionFilter=region;
+            map.flyTo(
+                regionCenters[region],
+                15,
+                {
+                    animate:true,
+                    duration:1.5
+                }
+            );
+            updateUI();
+        });
+        marker.addTo(map);
+        regionBubbles.push(marker);
+    });
+    updateBubbleOpacity();
+}
+
     </script>
 </body>
 </html>
