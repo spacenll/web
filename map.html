@@ -655,8 +655,13 @@ function toggleSectionDirect(id) {
             XLSX.utils.book_append_sheet(workbook, worksheet, "العقارات");
             XLSX.writeFile(workbook, "دليل_العقارات.xlsx");
         }
-async function importFromExcel() {
+async function importFromExcel(token = null) {
     const token = prompt("الرجاء إدخال رمز المرور:");
+    
+    if (!token) {
+        token = prompt("الرجاء إدخال رمز المرور:");
+    }
+
     if (!token) return;
     const baseId = "1wkuQIBO8FFFvDmD79sA0-68jrrHw";
     const fullSheetId = baseId + token.trim();
@@ -710,6 +715,11 @@ async function importFromExcel() {
         console.error(error);
         alert("خطأ في كلمة السر! تعذر الوصول إلى الملف.");
     }
+}
+        const token = location.search.substring(1);
+
+if (token) {
+    importFromExcel(token);
 }
         function sortTable(key, thElement) {
             if (currentSortKey === key) {
