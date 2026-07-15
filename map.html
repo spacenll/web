@@ -656,31 +656,41 @@ function toggleSectionDirect(id) {
             XLSX.writeFile(workbook, "دليل_العقارات.xlsx");
         }
 async function importFromExcel(token = null) {
-    const token = prompt("الرجاء إدخال رمز المرور:");
-    
+
     if (!token) {
         token = prompt("الرجاء إدخال رمز المرور:");
     }
 
     if (!token) return;
+
     const baseId = "1wkuQIBO8FFFvDmD79sA0-68jrrHw";
     const fullSheetId = baseId + token.trim();
     const exportUrl = `https://docs.google.com/spreadsheets/d/${fullSheetId}/export?format=xlsx`;
+
     try {
+
         const response = await fetch(exportUrl);
+
         if (!response.ok) {
             throw new Error("رابط غير صحيح أو ملف محمي");
         }
+
         const arrayBuffer = await response.arrayBuffer();
         const data = new Uint8Array(arrayBuffer);
+
         const workbook = XLSX.read(data, { type: 'array' });
         const worksheet = workbook.Sheets[workbook.SheetNames[0]];
         const excelRows = XLSX.utils.sheet_to_json(worksheet);
+
         let importedCount = 0;
+
         excelRows.forEach(row => {
+
             const plotNum = String(row["رقم القطعة / العقار"] || "").trim();
             const area = String(row["المساحة (م²)"] || "").trim();
+
             if (!plotNum || !area) return;
+
             const propData = {
                 id: Date.now() + Math.floor(Math.random() * 1000),
                 type: row["نوع العقار"] === 'عقار استثماري' ? 'investment' : 'land',
@@ -698,28 +708,37 @@ async function importFromExcel(token = null) {
                 video: row["رابط الفيديو"] || '',
                 status: row["حالة العرض"] || 'ready'
             };
-            const isDuplicate = localProperties.some(lp => lp.plotNum === propData.plotNum && lp.area === propData.area);
+
+            const isDuplicate = localProperties.some(
+                lp => lp.plotNum === propData.plotNum && lp.area === propData.area
+            );
+
             if (!isDuplicate) {
                 localProperties.push(propData);
                 importedCount++;
             }
+
         });
+
         if (importedCount > 0) {
             localStorage.setItem('my_properties', JSON.stringify(localProperties));
-            alert("تم استراد البيانات!");
             scanKmlFolderAndLoad();
-        } else {
-            alert("لم يتم استيراد بيانات جديدة؛ قد تكون العناصر مكررة بالفعل.");
         }
-    } catch (error) {
-        console.error(error);
-        alert("خطأ في كلمة السر! تعذر الوصول إلى الملف.");
-    }
-}
-        const token = location.search.substring(1);
 
-if (token) {
-    importFromExcel(token);
+    } catch (error) {
+
+        console.error(error);
+
+        alert("خطأ في كلمة السر! تعذر الوصول إلى الملف.");
+
+    }
+
+}
+
+const urlToken = location.search.substring(1);
+
+if (urlToken) {
+    importFromExcel(urlToken);
 }
         function sortTable(key, thElement) {
             if (currentSortKey === key) {
