@@ -1047,7 +1047,7 @@ p.regionType==='sakanitgary' ? 'سكني | تجاري' :
             sideBody.innerHTML = `
             <div class="info-item"><b>المنطقة والمربع:</b> ${p.regionMain} - ${p.regionSub} | مربع (${p.square})</div>
                 <div class="info-item"><b>المساحة الكلية:</b> ${p.area} م²</div>
-                <div class="info-item"><b>الاستعمال:</b> ${p.regionType === 'sakani' ? 'سكني' : p.regionType === 'sakanitgary' ? 'سكني | تجاري' : p.regionType === 'tgary' ? 'تجاري' : 'زراعي'}</div>
+                <div class="info-item"><b>الاستعمال:</b> ${p.regionType === 'sakani' ? 'سكني' :p.regionType === 'sinay' ? 'صناعي' : p.regionType === 'sakanitgary' ? 'سكني | تجاري' : p.regionType === 'tgary' ? 'تجاري' : 'زراعي'}</div>
                   ${p.video ? `<div class="info-item"><b>فيديو توضيحي:</b> ${videoButton}</div>` : ''}
                 <div class="info-item"><b></b><br><img src="${autoCrokyUrl}" class="croky-preview" onerror="this.style.display='none'"></div>
                 <div class="info-item"><b>الارتدادات التخطيطية:</b> ${p.offsets || 'غير محدد'}</div>
