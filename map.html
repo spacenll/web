@@ -57,12 +57,12 @@
     opacity: 1;
     visibility: visible;
 }
-#advanced-settings-content {
+#advanced-settings-content, #search-settings-content {
     opacity: 0;
     visibility: hidden;
     transition: .3s;
 }
-#advanced-settings-content.show {
+#advanced-settings-content.show, #search-settings-content.show {
     opacity: 1;
     visibility: visible;
 }
@@ -455,6 +455,8 @@
     
     <div class="map-container">
         <div class="modal-bg">
+        
+        <!-- Advanced Settings Modal -->
         <div id="advanced-settings-content" style=" position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 400px; max-width: 90%; min-height: 150px; padding: 15px; background: rgb(250, 250, 250); border: 2px solid var(--secondary); z-index: 10000; border-radius: 20px;">
             <h4 style="font-size: 15px; margin-bottom: 8px; font-weight: bold;">إدارة البيانات</h4>
             <div style="font-size: 22px; color:var(--secondary); cursor: pointer;position: absolute;left: 20px; top:10px;" onclick="toggleSectionDirect('advanced-settings-content')" title="اغلاق">x</div>
@@ -466,6 +468,44 @@
             </div>
             <button type="button" class="filter-chip1" style="width:100%; margin-top:8px;" onclick="clearAllDataSystem()">إعادة تعيين البيانات</button>
         </div>
+
+        <!-- Search & Filter Modal -->
+        <div id="search-settings-content" style=" position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 400px; max-width: 90%; min-height: 150px; padding: 25px; background: rgb(250, 250, 250); border: 2px solid var(--secondary); z-index: 10000; border-radius: 20px;">
+            <h4 style="font-size: 15px; margin-bottom: 8px; font-weight: bold;">البحث والفلترة المتقدمة</h4>
+            <div style="font-size: 22px; color:var(--secondary); cursor: pointer;position: absolute;left: 20px; top:10px;" onclick="toggleSectionDirect('search-settings-content')" title="اغلاق">x</div>
+            <br>
+            <form id="search-form">
+                <div class="form-group">
+                    <label>المنطقة</label>
+                    <select id="search-region">
+                        <option value="الكل">الكل</option>
+                        <option value="صلالة">صلالة</option>
+                        <option value="السعادة">السعادة</option>
+                        <option value="الدهاريز">الدهاريز</option>
+                        <option value="عوقد">عوقد</option>
+                        <option value="صحلنوت">صحلنوت</option>
+                        <option value="مرباط">مرباط</option>
+                        <option value="مسقط">مسقط</option>
+                        <option value="بركاء">بركاء</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group" style="flex:1;">
+                        <label>المساحة (من)</label>
+                        <input type="number" id="search-area-min" placeholder="0">
+                    </div>
+                    <div class="form-group" style="flex:1;">
+                        <label>المساحة (إلى)</label>
+                        <input type="number" id="search-area-max" placeholder="100000">
+                    </div>
+                </div>
+                <div class="btnsc" style="margin-top:10px;">
+                    <button type="submit" class="btn" style="flex:1;">بحث وتطبيق</button>
+                    <button type="button" class="btn btn-secondary" style="flex:1;" onclick="clearSearchFilter()">إلغاء الفلتر</button>
+                </div>
+            </form>
+        </div>
+        
         </div>
         <div id="map"></div>
         <div id="info-sidebar" class="info-sidebar">
@@ -482,6 +522,10 @@
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <script>
           let selectedUsageFilter = 'الكل';
+          let isAdvancedSearchActive = false;
+          let advSearchMin = 0;
+          let advSearchMax = Infinity;
+
         const googleSatellite = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', { maxZoom: 20 });
         const streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 20 });
         const labelLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', { maxZoom: 20, opacity: 0.9 });
@@ -569,6 +613,33 @@ function openInGoogleEarth(layer) {
             }
             setTimeout(() => { map.invalidateSize(); }, 300);
         }
+
+        // Logic for Advanced Search Submit
+        document.getElementById('search-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const r = document.getElementById('search-region').value;
+            if (r !== 'الكل') {
+                selectedRegionFilter = r; // Sync with quick filter
+            } else {
+                selectedRegionFilter = 'كافة المناطق';
+            }
+            advSearchMin = parseFloat(document.getElementById('search-area-min').value) || 0;
+            advSearchMax = parseFloat(document.getElementById('search-area-max').value) || Infinity;
+            isAdvancedSearchActive = true;
+            toggleSectionDirect('search-settings-content'); // close modal
+            updateUI();
+        });
+
+        function clearSearchFilter() {
+            isAdvancedSearchActive = false;
+            advSearchMin = 0;
+            advSearchMax = Infinity;
+            selectedRegionFilter = 'كافة المناطق'; 
+            document.getElementById('search-form').reset();
+            toggleSectionDirect('search-settings-content'); // close modal
+            updateUI();
+        }
+
         async function scanKmlFolderAndLoad() {
             try {
                 const response = await fetch('lib/kmls/');
@@ -631,8 +702,21 @@ function openInGoogleEarth(layer) {
 function toggleSectionDirect(id) {
     const el = document.getElementById(id);
     const bg = document.querySelector('.modal-bg');
-    el.classList.toggle('show');
-    bg.classList.toggle('show');
+    
+    // Check if the current element is already active
+    const isCurrentlyActive = el.classList.contains('show');
+    
+    // Hide all modals first
+    document.getElementById('advanced-settings-content').classList.remove('show');
+    document.getElementById('search-settings-content').classList.remove('show');
+    
+    // If it wasn't active, show it along with background
+    if (!isCurrentlyActive) {
+        el.classList.add('show');
+        bg.classList.add('show');
+    } else {
+        bg.classList.remove('show');
+    }
 }
         function exportToExcel() {
             if (localProperties.length === 0) {
@@ -697,7 +781,7 @@ async function importFromExcel(token = null) {
             if (!plotNum || !area) return;
 
             const propData = {
-                id: Date.now() + Math.floor(Math.random() * 1000),
+                id: Date.now() + Math.floor(Math.random() * 1000), // Default new ID
                 type: row["نوع العقار"] === 'عقار استثماري' ? 'investment' : 'land',
                 regionType: row["الاستعمال"] || 'sakani',
                 plotNum: plotNum,
@@ -714,11 +798,18 @@ async function importFromExcel(token = null) {
                 status: row["حالة العرض"] || 'ready'
             };
 
-            const isDuplicate = localProperties.some(
+            // MODIFICATION: Check for duplicates to Update instead of Ignore
+            const existingIndex = localProperties.findIndex(
                 lp => lp.plotNum === propData.plotNum && lp.area === propData.area
             );
 
-            if (!isDuplicate) {
+            if (existingIndex !== -1) {
+                // If it exists, update it but keep the old ID
+                propData.id = localProperties[existingIndex].id;
+                localProperties[existingIndex] = propData;
+                importedCount++;
+            } else {
+                // If new, just add it
                 localProperties.push(propData);
                 importedCount++;
             }
@@ -843,7 +934,7 @@ usageTypes.forEach(item=>{
 );
    filterBar.insertAdjacentHTML(
     'afterbegin',
-    '<div class="filter-chip" onclick="toggleSectionDirect(\'advanced-settings-content\')" title="ادارة">≡</div>  <div class="panel-header"><img src="lib/kmls/img/logo.png" alt="الشعار" class="panel-logo" onerror="this.style.display=(\'none\')"><span>الملكية للإستثمار</span> </div> <div style="align-content: center; padding-right: 20px;     padding-left: 20px;     color: #a5a5a5;">|</div>'
+    '<div class="filter-chip" onclick="toggleSectionDirect(\'search-settings-content\')" title="بحث وتصفية">🔍 بحث</div> <div class="filter-chip" onclick="toggleSectionDirect(\'advanced-settings-content\')" title="ادارة">≡</div>  <div class="panel-header"><img src="lib/kmls/img/logo.png" alt="الشعار" class="panel-logo" onerror="this.style.display=(\'none\')"><span>الملكية للإستثمار</span> </div> <div style="align-content: center; padding-right: 20px;     padding-left: 20px;     color: #a5a5a5;">|</div>'
 );
         }
       function toggleSection(id) {
@@ -921,7 +1012,15 @@ usageTypes.forEach(item=>{
         selectedUsageFilter === 'الكل'
         || p.regionType === selectedUsageFilter
         || (selectedUsageFilter === 'investment' && p.type === 'investment');
-    return regionMatch && usageMatch;
+
+    // Advanced search check
+    let areaMatch = true;
+    if (isAdvancedSearchActive) {
+        const pArea = parseFloat(p.area) || 0;
+        areaMatch = pArea >= advSearchMin && pArea <= advSearchMax;
+    }
+
+    return regionMatch && usageMatch && areaMatch;
 });
             filteredProperties.forEach(p => {
                 const tr = document.createElement('tr');
@@ -963,7 +1062,14 @@ p.regionType==='sakanitgary' ? 'سكني | تجاري' :
             selectedUsageFilter === 'الكل' ||
             p.regionType === selectedUsageFilter ||
             (selectedUsageFilter === 'investment' && p.type === 'investment');
-        if (!regionMatch || !usageMatch) {
+        
+        let areaMatch = true;
+        if (isAdvancedSearchActive) {
+            const pArea = parseFloat(p.area) || 0;
+            areaMatch = pArea >= advSearchMin && pArea <= advSearchMax;
+        }
+
+        if (!regionMatch || !usageMatch || !areaMatch) {
             return;
         }
         const generatedKmlUrl = `lib/kmls/${p.plotNum}_${p.area}.kml`;
@@ -1255,7 +1361,7 @@ function renderRegionBubbles(){
         const marker=L.marker(
             regionCenters[region],
             {
-                  pane:'regionBubblePane',
+                 pane:'regionBubblePane',
         interactive:true,
         icon:L.divIcon({
                     html:html,
