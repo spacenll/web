@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
 <Document>
-	<name>60_12750.kml</name>
+	<name>319_7170.kml</name>
   <description></description>
 	<open>1</open>
 	<StyleMap id="m_ylw-pushpin0">
@@ -75,13 +75,13 @@
 		</Pair>
 	</StyleMap>
 	<Placemark>
-		<name>60_12750</name>
+		<name>319_7170</name>
     <description></description>
 		<styleUrl>#m_ylw-pushpin</styleUrl>
 		<LineString>
 			<tessellate>1</tessellate>
 			<coordinates>
-				54.1803671717985,17.052862129553418,0 54.18177591521513,17.05281961760281,0 54.18180095423548,17.05358728468934,0 54.18039220500145,17.053629795957495,0 54.1803671717985,17.052862129553418,0 54.1803671717985,17.052862129553418,0 
+				54.12973086653757,17.095272719248534,0 54.130378249459746,17.094925479279496,0 54.129694588516685,17.0942701435491,0 54.12949319756344,17.094410053612624,0 54.129160467086045,17.094640478616583,0 54.129491307115984,17.095017385972053,0 54.12949291960695,17.09501632522714,0 54.12964178965769,17.09518494902971,0 54.12973086653757,17.095272719248534,0 
 			</coordinates>
 		</LineString>
 	</Placemark>
@@ -90,35 +90,56 @@
 	<styleUrl>#m_ylw-pushpin0</styleUrl>
 	<Point>
 		<gx:drawOrder>1</gx:drawOrder>
-		<coordinates>54.1803671717985,17.052862129553418,0 </coordinates>
+		<coordinates>54.12973086653757,17.095272719248534,0 </coordinates>
 	</Point>
 </Placemark><Placemark>
 	<name>2</name>
 	<styleUrl>#m_ylw-pushpin0</styleUrl>
 	<Point>
 		<gx:drawOrder>1</gx:drawOrder>
-		<coordinates>54.18177591521513,17.05281961760281,0 </coordinates>
+		<coordinates>54.130378249459746,17.094925479279496,0 </coordinates>
 	</Point>
 </Placemark><Placemark>
 	<name>3</name>
 	<styleUrl>#m_ylw-pushpin0</styleUrl>
 	<Point>
 		<gx:drawOrder>1</gx:drawOrder>
-		<coordinates>54.18180095423548,17.05358728468934,0 </coordinates>
+		<coordinates>54.129694588516685,17.0942701435491,0 </coordinates>
 	</Point>
 </Placemark><Placemark>
 	<name>4</name>
 	<styleUrl>#m_ylw-pushpin0</styleUrl>
 	<Point>
 		<gx:drawOrder>1</gx:drawOrder>
-		<coordinates>54.18039220500145,17.053629795957495,0 </coordinates>
+		<coordinates>54.12949319756344,17.094410053612624,0 </coordinates>
 	</Point>
 </Placemark><Placemark>
 	<name>5</name>
 	<styleUrl>#m_ylw-pushpin0</styleUrl>
 	<Point>
 		<gx:drawOrder>1</gx:drawOrder>
-		<coordinates>54.1803671717985,17.052862129553418,0 </coordinates>
+		<coordinates>54.129160467086045,17.094640478616583,0 </coordinates>
+	</Point>
+</Placemark><Placemark>
+	<name>6</name>
+	<styleUrl>#m_ylw-pushpin0</styleUrl>
+	<Point>
+		<gx:drawOrder>1</gx:drawOrder>
+		<coordinates>54.129491307115984,17.095017385972053,0 </coordinates>
+	</Point>
+</Placemark><Placemark>
+	<name>7</name>
+	<styleUrl>#m_ylw-pushpin0</styleUrl>
+	<Point>
+		<gx:drawOrder>1</gx:drawOrder>
+		<coordinates>54.12949291960695,17.09501632522714,0 </coordinates>
+	</Point>
+</Placemark><Placemark>
+	<name>8</name>
+	<styleUrl>#m_ylw-pushpin0</styleUrl>
+	<Point>
+		<gx:drawOrder>1</gx:drawOrder>
+		<coordinates>54.12964178965769,17.09518494902971,0 </coordinates>
 	</Point>
 </Placemark>
 </Document>
